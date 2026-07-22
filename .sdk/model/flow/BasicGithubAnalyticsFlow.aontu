@@ -1,0 +1,32 @@
+# BasicGithubAnalyticsFlow
+
+main: kit: flow: BasicGithubAnalyticsFlow:
+{
+  entity: "github_analytics",
+  kind: "basic",
+  name: "BasicGithubAnalyticsFlow",
+  step: [
+    {
+      input: {
+        ref: "github_analytics_ref01",
+        srcdatavar: "github_analytics_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "github_analytics01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-github_analytics_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicGithubAnalyticsFlow"
+}

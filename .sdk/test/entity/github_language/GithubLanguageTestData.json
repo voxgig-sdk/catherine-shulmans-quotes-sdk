@@ -1,0 +1,23 @@
+{
+  "existing": {
+    "github_language": {
+      "GITHUB_LANGUAGE00": {
+        "username": "USERNAME01",
+        "id": "GITHUB_LANGUAGE00"
+      },
+      "GITHUB_LANGUAGE01": {
+        "username": "USERNAME01",
+        "id": "GITHUB_LANGUAGE01"
+      },
+      "GITHUB_LANGUAGE02": {
+        "username": "USERNAME01",
+        "id": "GITHUB_LANGUAGE02"
+      }
+    }
+  },
+  "new": {
+    "github_language": {
+      "github_language_ref01": {}
+    }
+  }
+}

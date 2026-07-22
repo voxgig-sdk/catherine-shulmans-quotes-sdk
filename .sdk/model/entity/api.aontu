@@ -1,0 +1,67 @@
+# Entity: api
+
+main: kit: entity: api: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "api"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "author"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "disclaimer"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "endpoint"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "mirror"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "program"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "statistic"
+      req: false
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "api"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/api/"
+          parts: [
+            "api"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

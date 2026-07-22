@@ -1,0 +1,68 @@
+# Entity: github_card
+
+main: kit: entity: github_card: {
+
+  alias: field: {}
+
+  name: "github_card"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "l0v3m0n3y"
+                kind: "param"
+                name: "username"
+                orig: "username"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "shulman"
+                kind: "query"
+                name: "style"
+                orig: "style"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/github/{username}/card"
+          parts: [
+            "api"
+            "github"
+            "{username}"
+            "card"
+          ]
+          select: {
+            exist: [
+              "style"
+              "username"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "github"
+      ]
+    ]
+  }
+
+
+
+}

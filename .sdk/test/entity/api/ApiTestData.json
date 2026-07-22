@@ -1,0 +1,46 @@
+{
+  "existing": {
+    "api": {
+      "API00": {
+        "api": "s46",
+        "author": "s47",
+        "disclaimer": "s48",
+        "endpoint": {},
+        "mirror": {},
+        "program": [],
+        "statistic": {}
+      },
+      "API01": {
+        "api": "s8c",
+        "author": "s8d",
+        "disclaimer": "s8e",
+        "endpoint": {},
+        "mirror": {},
+        "program": [],
+        "statistic": {}
+      },
+      "API02": {
+        "api": "sd2",
+        "author": "sd3",
+        "disclaimer": "sd4",
+        "endpoint": {},
+        "mirror": {},
+        "program": [],
+        "statistic": {}
+      }
+    }
+  },
+  "new": {
+    "api": {
+      "api_ref01": {
+        "api": "s118",
+        "author": "s119",
+        "disclaimer": "s11a",
+        "endpoint": {},
+        "mirror": {},
+        "program": [],
+        "statistic": {}
+      }
+    }
+  }
+}

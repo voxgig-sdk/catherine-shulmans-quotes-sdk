@@ -1,0 +1,23 @@
+{
+  "existing": {
+    "github_analytics": {
+      "GITHUB_ANALYTICS00": {
+        "username": "USERNAME01",
+        "id": "GITHUB_ANALYTICS00"
+      },
+      "GITHUB_ANALYTICS01": {
+        "username": "USERNAME01",
+        "id": "GITHUB_ANALYTICS01"
+      },
+      "GITHUB_ANALYTICS02": {
+        "username": "USERNAME01",
+        "id": "GITHUB_ANALYTICS02"
+      }
+    }
+  },
+  "new": {
+    "github_analytics": {
+      "github_analytics_ref01": {}
+    }
+  }
+}

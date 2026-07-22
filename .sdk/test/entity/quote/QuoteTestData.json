@@ -1,0 +1,29 @@
+{
+  "existing": {
+    "quote": {
+      "QUOTE00": {
+        "id": "QUOTE00",
+        "source": "s1f",
+        "text": "s20"
+      },
+      "QUOTE01": {
+        "id": "QUOTE01",
+        "source": "s3d",
+        "text": "s3e"
+      },
+      "QUOTE02": {
+        "id": "QUOTE02",
+        "source": "s5b",
+        "text": "s5c"
+      }
+    }
+  },
+  "new": {
+    "quote": {
+      "quote_ref01": {
+        "source": "s79",
+        "text": "s7a"
+      }
+    }
+  }
+}

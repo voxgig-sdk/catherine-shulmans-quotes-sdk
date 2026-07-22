@@ -1,0 +1,32 @@
+# BasicGithubCardFlow
+
+main: kit: flow: BasicGithubCardFlow:
+{
+  entity: "github_card",
+  kind: "basic",
+  name: "BasicGithubCardFlow",
+  step: [
+    {
+      input: {
+        ref: "github_card_ref01",
+        srcdatavar: "github_card_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "github_card01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-github_card_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicGithubCardFlow"
+}

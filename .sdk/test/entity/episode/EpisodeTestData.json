@@ -1,0 +1,44 @@
+{
+  "existing": {
+    "episode": {
+      "EPISODE00": {
+        "episode": [],
+        "id": "EPISODE00",
+        "program": "s3e",
+        "title": "s3f",
+        "total": "s40",
+        "url": "s41",
+        "episode_id": "EPISODE01"
+      },
+      "EPISODE01": {
+        "episode": [],
+        "id": "EPISODE01",
+        "program": "s7a",
+        "title": "s7b",
+        "total": "s7c",
+        "url": "s7d",
+        "episode_id": "EPISODE01"
+      },
+      "EPISODE02": {
+        "episode": [],
+        "id": "EPISODE02",
+        "program": "sb6",
+        "title": "sb7",
+        "total": "sb8",
+        "url": "sb9",
+        "episode_id": "EPISODE01"
+      }
+    }
+  },
+  "new": {
+    "episode": {
+      "episode_ref01": {
+        "episode": [],
+        "program": "sf2",
+        "title": "sf3",
+        "total": "sf4",
+        "url": "sf5"
+      }
+    }
+  }
+}

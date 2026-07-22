@@ -1,0 +1,444 @@
+# CatherineShulmansQuotes PHP SDK Reference
+
+Complete API reference for the CatherineShulmansQuotes PHP SDK.
+
+
+## CatherineShulmansQuotesSDK
+
+### Constructor
+
+```php
+require_once __DIR__ . '/catherineshulmansquotes_sdk.php';
+
+$client = new CatherineShulmansQuotesSDK($options);
+```
+
+Create a new SDK client instance.
+
+**Parameters:**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `$options` | `array` | SDK configuration options. |
+| `$options["base"]` | `string` | Base URL for API requests. |
+| `$options["prefix"]` | `string` | URL prefix appended after base. |
+| `$options["suffix"]` | `string` | URL suffix appended after path. |
+| `$options["headers"]` | `array` | Custom headers for all requests. |
+| `$options["feature"]` | `array` | Feature configuration. |
+| `$options["system"]` | `array` | System overrides (e.g. custom fetch). |
+
+
+### Static Methods
+
+#### `CatherineShulmansQuotesSDK::test($testopts = null, $sdkopts = null)`
+
+Create a test client with mock features active. Both arguments may be `null`.
+
+```php
+$client = CatherineShulmansQuotesSDK::test();
+```
+
+
+### Instance Methods
+
+#### `Api($data = null)`
+
+Create a new `ApiEntity` instance. Pass `null` for no initial data.
+
+#### `Episode($data = null)`
+
+Create a new `EpisodeEntity` instance. Pass `null` for no initial data.
+
+#### `GithubAnalytics($data = null)`
+
+Create a new `GithubAnalyticsEntity` instance. Pass `null` for no initial data.
+
+#### `GithubCard($data = null)`
+
+Create a new `GithubCardEntity` instance. Pass `null` for no initial data.
+
+#### `GithubLanguage($data = null)`
+
+Create a new `GithubLanguageEntity` instance. Pass `null` for no initial data.
+
+#### `Quote($data = null)`
+
+Create a new `QuoteEntity` instance. Pass `null` for no initial data.
+
+#### `options_map(): array`
+
+Return a deep copy of the current SDK options.
+
+#### `get_utility(): CatherineShulmansQuotesUtility`
+
+Return a copy of the SDK utility object.
+
+#### `direct(array $fetchargs = []): array`
+
+Make a direct HTTP request to any API endpoint. This is the raw-HTTP escape
+hatch: it does **not** throw. It returns a result array
+`["ok" => bool, "status" => int, "headers" => array, "data" => mixed]`, or
+`["ok" => false, "err" => \Exception]` on failure. Branch on `$result["ok"]`.
+
+**Parameters:**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `$fetchargs["path"]` | `string` | URL path with optional `{param}` placeholders. |
+| `$fetchargs["method"]` | `string` | HTTP method (default: `"GET"`). |
+| `$fetchargs["params"]` | `array` | Path parameter values for `{param}` substitution. |
+| `$fetchargs["query"]` | `array` | Query string parameters. |
+| `$fetchargs["headers"]` | `array` | Request headers (merged with defaults). |
+| `$fetchargs["body"]` | `mixed` | Request body (arrays are JSON-serialized). |
+| `$fetchargs["ctrl"]` | `array` | Control options. |
+
+**Returns:** `array` — the result dict (see above); never throws.
+
+#### `prepare(array $fetchargs = []): mixed`
+
+Prepare a fetch definition without sending the request. Returns the
+`$fetchdef` array. Throws on error.
+
+
+---
+
+## ApiEntity
+
+```php
+$api = $client->Api();
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `api` | `string` | No |  |
+| `author` | `string` | No |  |
+| `disclaimer` | `string` | No |  |
+| `endpoint` | `array` | No |  |
+| `mirror` | `array` | No |  |
+| `program` | `array` | No |  |
+| `statistic` | `array` | No |  |
+
+### Operations
+
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
+
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+
+```php
+$results = $client->Api()->list();
+```
+
+### Common Methods
+
+#### `data_get(): array`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set($data): void`
+
+Set the entity data.
+
+#### `match_get(): array`
+
+Get the entity match criteria.
+
+#### `match_set($match): void`
+
+Set the entity match criteria.
+
+#### `make(): ApiEntity`
+
+Create a new `ApiEntity` instance with the same client and
+options.
+
+#### `get_name(): string`
+
+Return the entity name.
+
+
+---
+
+## EpisodeEntity
+
+```php
+$episode = $client->Episode();
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `episode` | `array` | No |  |
+| `id` | `string` | No |  |
+| `program` | `string` | No |  |
+| `title` | `string` | No |  |
+| `total` | `int` | No |  |
+| `url` | `string` | No |  |
+
+### Operations
+
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
+
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+
+```php
+$results = $client->Episode()->list();
+```
+
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
+
+Load a single entity matching the given criteria. Throws on error.
+
+```php
+$result = $client->Episode()->load(["id" => "episode_id"]);
+```
+
+### Common Methods
+
+#### `data_get(): array`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set($data): void`
+
+Set the entity data.
+
+#### `match_get(): array`
+
+Get the entity match criteria.
+
+#### `match_set($match): void`
+
+Set the entity match criteria.
+
+#### `make(): EpisodeEntity`
+
+Create a new `EpisodeEntity` instance with the same client and
+options.
+
+#### `get_name(): string`
+
+Return the entity name.
+
+
+---
+
+## GithubAnalyticsEntity
+
+```php
+$github_analytics = $client->GithubAnalytics();
+```
+
+### Operations
+
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
+
+Load a single entity matching the given criteria. Throws on error.
+
+```php
+$result = $client->GithubAnalytics()->load(["username" => "username"]);
+```
+
+### Common Methods
+
+#### `data_get(): array`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set($data): void`
+
+Set the entity data.
+
+#### `match_get(): array`
+
+Get the entity match criteria.
+
+#### `match_set($match): void`
+
+Set the entity match criteria.
+
+#### `make(): GithubAnalyticsEntity`
+
+Create a new `GithubAnalyticsEntity` instance with the same client and
+options.
+
+#### `get_name(): string`
+
+Return the entity name.
+
+
+---
+
+## GithubCardEntity
+
+```php
+$github_card = $client->GithubCard();
+```
+
+### Operations
+
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
+
+Load a single entity matching the given criteria. Throws on error.
+
+```php
+$result = $client->GithubCard()->load(["username" => "username"]);
+```
+
+### Common Methods
+
+#### `data_get(): array`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set($data): void`
+
+Set the entity data.
+
+#### `match_get(): array`
+
+Get the entity match criteria.
+
+#### `match_set($match): void`
+
+Set the entity match criteria.
+
+#### `make(): GithubCardEntity`
+
+Create a new `GithubCardEntity` instance with the same client and
+options.
+
+#### `get_name(): string`
+
+Return the entity name.
+
+
+---
+
+## GithubLanguageEntity
+
+```php
+$github_language = $client->GithubLanguage();
+```
+
+### Operations
+
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
+
+Load a single entity matching the given criteria. Throws on error.
+
+```php
+$result = $client->GithubLanguage()->load(["username" => "username"]);
+```
+
+### Common Methods
+
+#### `data_get(): array`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set($data): void`
+
+Set the entity data.
+
+#### `match_get(): array`
+
+Get the entity match criteria.
+
+#### `match_set($match): void`
+
+Set the entity match criteria.
+
+#### `make(): GithubLanguageEntity`
+
+Create a new `GithubLanguageEntity` instance with the same client and
+options.
+
+#### `get_name(): string`
+
+Return the entity name.
+
+
+---
+
+## QuoteEntity
+
+```php
+$quote = $client->Quote();
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `int` | No |  |
+| `source` | `string` | No |  |
+| `text` | `string` | No |  |
+
+### Operations
+
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
+
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+
+```php
+$results = $client->Quote()->list();
+```
+
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
+
+Load a single entity matching the given criteria. Throws on error.
+
+```php
+$result = $client->Quote()->load(["id" => 1]);
+```
+
+### Common Methods
+
+#### `data_get(): array`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set($data): void`
+
+Set the entity data.
+
+#### `match_get(): array`
+
+Get the entity match criteria.
+
+#### `match_set($match): void`
+
+Set the entity match criteria.
+
+#### `make(): QuoteEntity`
+
+Create a new `QuoteEntity` instance with the same client and
+options.
+
+#### `get_name(): string`
+
+Return the entity name.
+
+
+---
+
+## Features
+
+| Feature | Version | Description |
+| --- | --- | --- |
+| `test` | 0.0.1 | In-memory mock transport for testing without a live server |
+
+
+Features are activated via the `feature` option:
+
+```php
+$client = new CatherineShulmansQuotesSDK([
+  "feature" => [
+    "test" => ["active" => true],
+  ],
+]);
+```
+

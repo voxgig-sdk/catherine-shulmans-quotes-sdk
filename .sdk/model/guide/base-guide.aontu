@@ -1,0 +1,68 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 6
+  metrics: count: path: 13
+  metrics: count: method: 13
+
+  entity: api: {
+    path: "/api/": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: episode: {
+    path: "/api/episodes": {
+      op: list: method: *GET
+    }
+    path: "/api/episodes/{program}": {
+      rename: param: "program": *"id"
+      op: load: method: *GET
+    }
+    path: "/api/episodes/{program}/random": {
+      action: "random": {}
+      op: load: method: *GET
+    }
+    path: "/api/episodes/{program}/{episode_id}": {
+      op: load: method: *GET
+    }
+    path: "/api/search/episodes": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: github_analytics: {
+    path: "/api/github/{username}/analytics": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: github_card: {
+    path: "/api/github/{username}/card": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: github_language: {
+    path: "/api/github/{username}/languages": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: quote: {
+    path: "/api/quote/random": {
+      action: "random": {}
+      op: load: method: *GET
+    }
+    path: "/api/quote/{id}": {
+      op: load: method: *GET
+    }
+    path: "/api/quotes": {
+      op: list: method: *GET
+    }
+    path: "/api/search/quotes": {
+      op: list: method: *GET
+    }
+  }
+
+}

@@ -1,0 +1,383 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Catherine Shulman's Quotes API",
+    "description": "Unofficial educational API of quotes and program episodes by Ekaterina Shulman, plus GitHub profile analytics. Endpoints and structure are derived from the API's self-describing root document. Programs available: slow-reading, knowledge-is-power, status, zakladka.",
+    "version": "0.1.0",
+    "contact": {
+      "name": "l0v3m0n3y",
+      "url": "https://github.com/l0v3m0n3y"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://shulmanquotes.vercel.app",
+      "description": "Vercel mirror"
+    },
+    {
+      "url": "https://shulman-quotes-api.onrender.com",
+      "description": "Render mirror"
+    }
+  ],
+  "paths": {
+    "/api/": {
+      "get": {
+        "operationId": "getApiIndex",
+        "summary": "API index",
+        "description": "Self-describing root document listing mirrors, available programs, endpoints and statistics.",
+        "responses": {
+          "200": {
+            "description": "API index document",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "api": { "type": "string" },
+                    "mirrors": { "type": "object", "additionalProperties": { "type": "string" } },
+                    "disclaimer": { "type": "string" },
+                    "author": { "type": "string" },
+                    "programs": { "type": "array", "items": { "type": "string" } },
+                    "endpoints": { "type": "object" },
+                    "statistics": { "type": "object" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/quotes": {
+      "get": {
+        "operationId": "getAllQuotes",
+        "summary": "All quotes",
+        "responses": {
+          "200": {
+            "description": "All quotes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": { "type": "integer", "example": 276 },
+                    "quotes": {
+                      "type": "array",
+                      "items": { "$ref": "#/components/schemas/Quote" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/quote/random": {
+      "get": {
+        "operationId": "getRandomQuote",
+        "summary": "Random quote",
+        "responses": {
+          "200": {
+            "description": "A random quote",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Quote" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/quote/{id}": {
+      "get": {
+        "operationId": "getQuoteById",
+        "summary": "Quote by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Quote identifier.",
+            "schema": { "type": "integer", "example": 1 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested quote",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Quote" }
+              }
+            }
+          },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/api/search/quotes": {
+      "get": {
+        "operationId": "searchQuotes",
+        "summary": "Search quotes",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "description": "Search term.",
+            "schema": { "type": "string", "example": "насилие" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Matching quotes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": { "type": "integer" },
+                    "quotes": { "type": "array", "items": { "$ref": "#/components/schemas/Quote" } }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/episodes": {
+      "get": {
+        "operationId": "getAllEpisodes",
+        "summary": "All episodes of all programs",
+        "responses": {
+          "200": {
+            "description": "All episodes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": { "type": "integer" },
+                    "episodes": { "type": "array", "items": { "$ref": "#/components/schemas/Episode" } }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/episodes/{program}": {
+      "get": {
+        "operationId": "getEpisodesByProgram",
+        "summary": "All episodes of a program",
+        "parameters": [ { "$ref": "#/components/parameters/Program" } ],
+        "responses": {
+          "200": {
+            "description": "Episodes of the program",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": { "type": "integer" },
+                    "episodes": { "type": "array", "items": { "$ref": "#/components/schemas/Episode" } }
+                  }
+                }
+              }
+            }
+          },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/api/episodes/{program}/random": {
+      "get": {
+        "operationId": "getRandomEpisode",
+        "summary": "Random episode of a program",
+        "parameters": [ { "$ref": "#/components/parameters/Program" } ],
+        "responses": {
+          "200": {
+            "description": "A random episode",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Episode" }
+              }
+            }
+          },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/api/episodes/{program}/{episode_id}": {
+      "get": {
+        "operationId": "getEpisodeById",
+        "summary": "A specific episode",
+        "parameters": [
+          { "$ref": "#/components/parameters/Program" },
+          {
+            "name": "episode_id",
+            "in": "path",
+            "required": true,
+            "description": "Episode identifier.",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested episode",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Episode" }
+              }
+            }
+          },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/api/search/episodes": {
+      "get": {
+        "operationId": "searchEpisodes",
+        "summary": "Search across all episodes",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "description": "Search term.",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Matching episodes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": { "type": "integer" },
+                    "episodes": { "type": "array", "items": { "$ref": "#/components/schemas/Episode" } }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/github/{username}/analytics": {
+      "get": {
+        "operationId": "getGithubAnalytics",
+        "summary": "Full political-science-style analysis of a GitHub profile",
+        "parameters": [ { "$ref": "#/components/parameters/Username" } ],
+        "responses": {
+          "200": {
+            "description": "Profile analytics",
+            "content": {
+              "application/json": { "schema": { "type": "object" } }
+            }
+          }
+        }
+      }
+    },
+    "/api/github/{username}/languages": {
+      "get": {
+        "operationId": "getGithubLanguages",
+        "summary": "Language distribution for a GitHub profile",
+        "parameters": [ { "$ref": "#/components/parameters/Username" } ],
+        "responses": {
+          "200": {
+            "description": "Language distribution",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "additionalProperties": { "type": "number" } }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/github/{username}/card": {
+      "get": {
+        "operationId": "getGithubCard",
+        "summary": "SVG card for embedding",
+        "parameters": [
+          { "$ref": "#/components/parameters/Username" },
+          {
+            "name": "style",
+            "in": "query",
+            "required": false,
+            "description": "Card style.",
+            "schema": { "type": "string", "enum": ["shulman", "apple"], "default": "shulman" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "SVG card",
+            "content": {
+              "image/svg+xml": {
+                "schema": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "Program": {
+        "name": "program",
+        "in": "path",
+        "required": true,
+        "description": "Program slug: slow-reading, knowledge-is-power, status or zakladka.",
+        "schema": {
+          "type": "string",
+          "enum": ["slow-reading", "knowledge-is-power", "status", "zakladka"]
+        }
+      },
+      "Username": {
+        "name": "username",
+        "in": "path",
+        "required": true,
+        "description": "GitHub username.",
+        "schema": { "type": "string", "example": "l0v3m0n3y" }
+      }
+    },
+    "responses": {
+      "NotFound": {
+        "description": "Resource not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": { "detail": { "type": "string", "example": "Not Found" } }
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "Quote": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "example": 1 },
+          "text": { "type": "string" },
+          "source": { "type": "string" }
+        }
+      },
+      "Episode": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "program": { "type": "string" },
+          "title": { "type": "string" },
+          "url": { "type": "string" }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      auth: false
+      contact: {
+        name: "l0v3m0n3y"
+        url: "https://github.com/l0v3m0n3y"
+      }
+      description: "Unofficial educational API of quotes and program episodes by Ekaterina Shulman, plus GitHub profile analytics. Endpoints and structure are derived from the API's self-describing root document. Programs available: slow-reading, knowledge-is-power, status, zakladka."
+      servers: [
+        {
+          description: "Vercel mirror"
+          url: "https://shulmanquotes.vercel.app"
+        }
+        {
+          description: "Render mirror"
+          url: "https://shulman-quotes-api.onrender.com"
+        }
+      ]
+      summary: "Unofficial educational API of quotes and program episodes by Ekaterina Shulman, plus GitHub profile analytics."
+      title: "Catherine Shulman's Quotes API"
+      version: "0.1.0"
+      website: "https://shulmanquotes.vercel.app"
+    }
+  }
+}
+

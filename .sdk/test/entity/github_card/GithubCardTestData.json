@@ -1,0 +1,23 @@
+{
+  "existing": {
+    "github_card": {
+      "GITHUB_CARD00": {
+        "username": "USERNAME01",
+        "id": "GITHUB_CARD00"
+      },
+      "GITHUB_CARD01": {
+        "username": "USERNAME01",
+        "id": "GITHUB_CARD01"
+      },
+      "GITHUB_CARD02": {
+        "username": "USERNAME01",
+        "id": "GITHUB_CARD02"
+      }
+    }
+  },
+  "new": {
+    "github_card": {
+      "github_card_ref01": {}
+    }
+  }
+}

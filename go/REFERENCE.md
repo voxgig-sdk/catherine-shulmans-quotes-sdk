@@ -1,0 +1,451 @@
+# CatherineShulmansQuotes Golang SDK Reference
+
+Complete API reference for the CatherineShulmansQuotes Golang SDK.
+
+
+## CatherineShulmansQuotesSDK
+
+### Constructor
+
+```go
+func NewCatherineShulmansQuotesSDK(options map[string]any) *CatherineShulmansQuotesSDK
+```
+
+Create a new SDK client instance.
+
+**Parameters:**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `options` | `map[string]any` | SDK configuration options. |
+| `options["base"]` | `string` | Base URL for API requests. |
+| `options["prefix"]` | `string` | URL prefix appended after base. |
+| `options["suffix"]` | `string` | URL suffix appended after path. |
+| `options["headers"]` | `map[string]any` | Custom headers for all requests. |
+| `options["feature"]` | `map[string]any` | Feature configuration. |
+| `options["system"]` | `map[string]any` | System overrides (e.g. custom fetch). |
+
+
+### Static Methods
+
+#### `Test() *CatherineShulmansQuotesSDK`
+
+No-arg convenience constructor for the common no-options test case.
+
+```go
+client := sdk.Test()
+```
+
+#### `TestSDK(testopts, sdkopts map[string]any) *CatherineShulmansQuotesSDK`
+
+Test client with options. Both arguments may be `nil`.
+
+```go
+client := sdk.TestSDK(testopts, sdkopts)
+```
+
+
+### Instance Methods
+
+#### `Api(data map[string]any) CatherineShulmansQuotesEntity`
+
+Create a new `Api` entity instance. Pass `nil` for no initial data.
+
+#### `Episode(data map[string]any) CatherineShulmansQuotesEntity`
+
+Create a new `Episode` entity instance. Pass `nil` for no initial data.
+
+#### `GithubAnalytics(data map[string]any) CatherineShulmansQuotesEntity`
+
+Create a new `GithubAnalytics` entity instance. Pass `nil` for no initial data.
+
+#### `GithubCard(data map[string]any) CatherineShulmansQuotesEntity`
+
+Create a new `GithubCard` entity instance. Pass `nil` for no initial data.
+
+#### `GithubLanguage(data map[string]any) CatherineShulmansQuotesEntity`
+
+Create a new `GithubLanguage` entity instance. Pass `nil` for no initial data.
+
+#### `Quote(data map[string]any) CatherineShulmansQuotesEntity`
+
+Create a new `Quote` entity instance. Pass `nil` for no initial data.
+
+#### `OptionsMap() map[string]any`
+
+Return a deep copy of the current SDK options.
+
+#### `GetUtility() *Utility`
+
+Return a copy of the SDK utility object.
+
+#### `Direct(fetchargs map[string]any) (map[string]any, error)`
+
+Make a direct HTTP request to any API endpoint.
+
+**Parameters:**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `fetchargs["path"]` | `string` | URL path with optional `{param}` placeholders. |
+| `fetchargs["method"]` | `string` | HTTP method (default: `"GET"`). |
+| `fetchargs["params"]` | `map[string]any` | Path parameter values for `{param}` substitution. |
+| `fetchargs["query"]` | `map[string]any` | Query string parameters. |
+| `fetchargs["headers"]` | `map[string]any` | Request headers (merged with defaults). |
+| `fetchargs["body"]` | `any` | Request body (maps are JSON-serialized). |
+| `fetchargs["ctrl"]` | `map[string]any` | Control options (e.g. `map[string]any{"explain": true}`). |
+
+**Returns:** `(map[string]any, error)`
+
+#### `Prepare(fetchargs map[string]any) (map[string]any, error)`
+
+Prepare a fetch definition without sending the request. Accepts the
+same parameters as `Direct()`.
+
+**Returns:** `(map[string]any, error)`
+
+
+---
+
+## ApiEntity
+
+```go
+api := client.Api(nil)
+fmt.Println(api.GetName()) // "api"
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `api` | `string` | No |  |
+| `author` | `string` | No |  |
+| `disclaimer` | `string` | No |  |
+| `endpoint` | `map[string]any` | No |  |
+| `mirror` | `map[string]any` | No |  |
+| `program` | `[]any` | No |  |
+| `statistic` | `map[string]any` | No |  |
+
+### Operations
+
+#### `List(reqmatch, ctrl map[string]any) (any, error)`
+
+List entities matching the given criteria. Returns an array.
+
+```go
+results, err := client.Api(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
+```
+
+### Common Methods
+
+#### `Data(args ...any) any`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `Match(args ...any) any`
+
+Get or set the entity match criteria. Works the same as `Data()`.
+
+#### `Make() Entity`
+
+Create a new `ApiEntity` instance with the same client and
+options.
+
+#### `GetName() string`
+
+Return the entity name.
+
+
+---
+
+## EpisodeEntity
+
+```go
+episode := client.Episode(nil)
+fmt.Println(episode.GetName()) // "episode"
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `episode` | `[]any` | No |  |
+| `id` | `string` | No |  |
+| `program` | `string` | No |  |
+| `title` | `string` | No |  |
+| `total` | `int` | No |  |
+| `url` | `string` | No |  |
+
+### Operations
+
+#### `List(reqmatch, ctrl map[string]any) (any, error)`
+
+List entities matching the given criteria. Returns an array.
+
+```go
+results, err := client.Episode(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
+```
+
+#### `Load(reqmatch, ctrl map[string]any) (any, error)`
+
+Load a single entity matching the given criteria.
+
+```go
+result, err := client.Episode(nil).Load(map[string]any{"id": "episode_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
+### Common Methods
+
+#### `Data(args ...any) any`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `Match(args ...any) any`
+
+Get or set the entity match criteria. Works the same as `Data()`.
+
+#### `Make() Entity`
+
+Create a new `EpisodeEntity` instance with the same client and
+options.
+
+#### `GetName() string`
+
+Return the entity name.
+
+
+---
+
+## GithubAnalyticsEntity
+
+```go
+githubAnalytics := client.GithubAnalytics(nil)
+fmt.Println(githubAnalytics.GetName()) // "github_analytics"
+```
+
+### Operations
+
+#### `Load(reqmatch, ctrl map[string]any) (any, error)`
+
+Load a single entity matching the given criteria.
+
+```go
+result, err := client.GithubAnalytics(nil).Load(map[string]any{"username": "username"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
+### Common Methods
+
+#### `Data(args ...any) any`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `Match(args ...any) any`
+
+Get or set the entity match criteria. Works the same as `Data()`.
+
+#### `Make() Entity`
+
+Create a new `GithubAnalyticsEntity` instance with the same client and
+options.
+
+#### `GetName() string`
+
+Return the entity name.
+
+
+---
+
+## GithubCardEntity
+
+```go
+githubCard := client.GithubCard(nil)
+fmt.Println(githubCard.GetName()) // "github_card"
+```
+
+### Operations
+
+#### `Load(reqmatch, ctrl map[string]any) (any, error)`
+
+Load a single entity matching the given criteria.
+
+```go
+result, err := client.GithubCard(nil).Load(map[string]any{"username": "username"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
+### Common Methods
+
+#### `Data(args ...any) any`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `Match(args ...any) any`
+
+Get or set the entity match criteria. Works the same as `Data()`.
+
+#### `Make() Entity`
+
+Create a new `GithubCardEntity` instance with the same client and
+options.
+
+#### `GetName() string`
+
+Return the entity name.
+
+
+---
+
+## GithubLanguageEntity
+
+```go
+githubLanguage := client.GithubLanguage(nil)
+fmt.Println(githubLanguage.GetName()) // "github_language"
+```
+
+### Operations
+
+#### `Load(reqmatch, ctrl map[string]any) (any, error)`
+
+Load a single entity matching the given criteria.
+
+```go
+result, err := client.GithubLanguage(nil).Load(map[string]any{"username": "username"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
+### Common Methods
+
+#### `Data(args ...any) any`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `Match(args ...any) any`
+
+Get or set the entity match criteria. Works the same as `Data()`.
+
+#### `Make() Entity`
+
+Create a new `GithubLanguageEntity` instance with the same client and
+options.
+
+#### `GetName() string`
+
+Return the entity name.
+
+
+---
+
+## QuoteEntity
+
+```go
+quote := client.Quote(nil)
+fmt.Println(quote.GetName()) // "quote"
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `int` | No |  |
+| `source` | `string` | No |  |
+| `text` | `string` | No |  |
+
+### Operations
+
+#### `List(reqmatch, ctrl map[string]any) (any, error)`
+
+List entities matching the given criteria. Returns an array.
+
+```go
+results, err := client.Quote(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
+```
+
+#### `Load(reqmatch, ctrl map[string]any) (any, error)`
+
+Load a single entity matching the given criteria.
+
+```go
+result, err := client.Quote(nil).Load(map[string]any{"id": 1}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
+### Common Methods
+
+#### `Data(args ...any) any`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `Match(args ...any) any`
+
+Get or set the entity match criteria. Works the same as `Data()`.
+
+#### `Make() Entity`
+
+Create a new `QuoteEntity` instance with the same client and
+options.
+
+#### `GetName() string`
+
+Return the entity name.
+
+
+---
+
+## Features
+
+| Feature | Version | Description |
+| --- | --- | --- |
+| `test` | 0.0.1 | In-memory mock transport for testing without a live server |
+
+
+Features are activated via the `feature` option:
+
+```go
+client := sdk.NewCatherineShulmansQuotesSDK(map[string]any{
+    "feature": map[string]any{
+        "test": map[string]any{"active": true},
+    },
+})
+```
+

@@ -1,0 +1,32 @@
+# BasicGithubLanguageFlow
+
+main: kit: flow: BasicGithubLanguageFlow:
+{
+  entity: "github_language",
+  kind: "basic",
+  name: "BasicGithubLanguageFlow",
+  step: [
+    {
+      input: {
+        ref: "github_language_ref01",
+        srcdatavar: "github_language_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "github_language01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-github_language_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicGithubLanguageFlow"
+}
