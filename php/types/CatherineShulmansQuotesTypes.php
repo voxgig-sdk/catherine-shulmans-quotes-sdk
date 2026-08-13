@@ -18,10 +18,10 @@ class Api
     public ?string $api = null;
     public ?string $author = null;
     public ?string $disclaimer = null;
-    public ?array $endpoint = null;
-    public ?array $mirror = null;
-    public ?array $program = null;
-    public ?array $statistic = null;
+    public ?array $endpoints = null;
+    public ?array $mirrors = null;
+    public ?array $programs = null;
+    public ?array $statistics = null;
 }
 
 /** Request payload for Api#list. */
@@ -30,16 +30,16 @@ class ApiListMatch
     public ?string $api = null;
     public ?string $author = null;
     public ?string $disclaimer = null;
-    public ?array $endpoint = null;
-    public ?array $mirror = null;
-    public ?array $program = null;
-    public ?array $statistic = null;
+    public ?array $endpoints = null;
+    public ?array $mirrors = null;
+    public ?array $programs = null;
+    public ?array $statistics = null;
 }
 
 /** Episode entity data model. */
 class Episode
 {
-    public ?array $episode = null;
+    public ?array $episodes = null;
     public ?string $id = null;
     public ?string $program = null;
     public ?string $title = null;
@@ -58,7 +58,7 @@ class EpisodeLoadMatch
 /** Request payload for Episode#list. */
 class EpisodeListMatch
 {
-    public ?array $episode = null;
+    public ?array $episodes = null;
     public ?string $id = null;
     public ?string $program = null;
     public ?string $title = null;

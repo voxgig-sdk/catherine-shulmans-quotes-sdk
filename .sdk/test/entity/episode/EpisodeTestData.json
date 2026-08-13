@@ -2,7 +2,7 @@
   "existing": {
     "episode": {
       "EPISODE00": {
-        "episode": [],
+        "episodes": [],
         "id": "EPISODE00",
         "program": "s3e",
         "title": "s3f",
@@ -11,7 +11,7 @@
         "episode_id": "EPISODE01"
       },
       "EPISODE01": {
-        "episode": [],
+        "episodes": [],
         "id": "EPISODE01",
         "program": "s7a",
         "title": "s7b",
@@ -20,7 +20,7 @@
         "episode_id": "EPISODE01"
       },
       "EPISODE02": {
-        "episode": [],
+        "episodes": [],
         "id": "EPISODE02",
         "program": "sb6",
         "title": "sb7",
@@ -33,7 +33,7 @@
   "new": {
     "episode": {
       "episode_ref01": {
-        "episode": [],
+        "episodes": [],
         "program": "sf2",
         "title": "sf3",
         "total": "sf4",

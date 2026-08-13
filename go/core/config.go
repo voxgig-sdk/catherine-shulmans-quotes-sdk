@@ -52,28 +52,28 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "endpoint",
+						"name": "endpoints",
 						"req": false,
 						"type": "`$OBJECT`",
 						"index$": 3,
 					},
 					map[string]any{
 						"active": true,
-						"name": "mirror",
+						"name": "mirrors",
 						"req": false,
 						"type": "`$OBJECT`",
 						"index$": 4,
 					},
 					map[string]any{
 						"active": true,
-						"name": "program",
+						"name": "programs",
 						"req": false,
 						"type": "`$ARRAY`",
 						"index$": 5,
 					},
 					map[string]any{
 						"active": true,
-						"name": "statistic",
+						"name": "statistics",
 						"req": false,
 						"type": "`$OBJECT`",
 						"index$": 6,
@@ -88,6 +88,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/api/",
 								"parts": []any{
@@ -101,7 +102,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -112,7 +112,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "episode",
+						"name": "episodes",
 						"req": false,
 						"type": "`$ARRAY`",
 						"index$": 0,
@@ -173,6 +173,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/api/search/episodes",
 								"parts": []any{
@@ -187,13 +188,14 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.episodes`",
 								},
 								"index$": 0,
 							},
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/api/episodes",
 								"parts": []any{
@@ -203,12 +205,11 @@ func MakeConfig() map[string]any {
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.episodes`",
 								},
 								"index$": 1,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -238,6 +239,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/api/episodes/{program}/{episode_id}",
 								"parts": []any{
@@ -273,6 +275,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/api/episodes/{program}",
 								"parts": []any{
@@ -310,6 +313,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/api/episodes/{program}/random",
 								"parts": []any{
@@ -331,7 +335,6 @@ func MakeConfig() map[string]any {
 								"index$": 2,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -366,6 +369,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/api/github/{username}/analytics",
 								"parts": []any{
@@ -386,7 +390,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -432,6 +435,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/api/github/{username}/card",
 								"parts": []any{
@@ -453,7 +457,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -488,6 +491,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/api/github/{username}/languages",
 								"parts": []any{
@@ -508,7 +512,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -564,6 +567,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/api/search/quotes",
 								"parts": []any{
@@ -578,13 +582,14 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.quotes`",
 								},
 								"index$": 0,
 							},
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/api/quotes",
 								"parts": []any{
@@ -594,12 +599,11 @@ func MakeConfig() map[string]any {
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.quotes`",
 								},
 								"index$": 1,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -621,6 +625,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/api/quote/{id}",
 								"parts": []any{
@@ -642,6 +647,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/api/quote/random",
 								"parts": []any{
@@ -659,7 +665,6 @@ func MakeConfig() map[string]any {
 								"index$": 1,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{

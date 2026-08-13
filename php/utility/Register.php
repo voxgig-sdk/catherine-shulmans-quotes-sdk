@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ CatherineShulmansQuotesUtility::setRegistrar(function (CatherineShulmansQuotesUt
     $u->prepare_params = [CatherineShulmansQuotesPrepareParams::class, 'call'];
     $u->prepare_path = [CatherineShulmansQuotesPreparePath::class, 'call'];
     $u->prepare_query = [CatherineShulmansQuotesPrepareQuery::class, 'call'];
+    $u->graphql_body = [CatherineShulmansQuotesGraphql::class, 'body'];
+    $u->graphql_errors = [CatherineShulmansQuotesGraphql::class, 'errors'];
     $u->result_basic = [CatherineShulmansQuotesResultBasic::class, 'call'];
     $u->result_body = [CatherineShulmansQuotesResultBody::class, 'call'];
     $u->result_headers = [CatherineShulmansQuotesResultHeaders::class, 'call'];

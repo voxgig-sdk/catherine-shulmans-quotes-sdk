@@ -21,22 +21,22 @@ main: kit: entity: api: {
       type: "`$STRING`"
     }
     {
-      name: "endpoint"
+      name: "endpoints"
       req: false
       type: "`$OBJECT`"
     }
     {
-      name: "mirror"
+      name: "mirrors"
       req: false
       type: "`$OBJECT`"
     }
     {
-      name: "program"
+      name: "programs"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "statistic"
+      name: "statistics"
       req: false
       type: "`$OBJECT`"
     }

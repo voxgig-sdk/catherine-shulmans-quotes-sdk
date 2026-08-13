@@ -19,11 +19,15 @@ import {
 describe('ApiDirect', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when CATHERINESHULMANSQUOTES_TEST_LIVE=TRUE.
-  afterEach(liveDelay('CATHERINESHULMANSQUOTES_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when CATHERINE_SHULMANS_QUOTES_TEST_LIVE=TRUE.
+  afterEach(liveDelay('CATHERINE_SHULMANS_QUOTES_TEST_LIVE'))
 
   test('direct-exists', async () => {
     const sdk = new CatherineShulmansQuotesSDK({
+      // Concrete base: a live construction must satisfy any server
+      // variables a templated base URL declares; overriding base with a
+      // literal (as the direct flow tests do) sidesteps the requirement.
+      base: 'http://localhost:8080',
       system: { fetch: async () => ({}) }
     })
     assert('function' === typeof sdk.direct)
@@ -77,17 +81,17 @@ function directSetup(mockres?: any) {
   const calls: any[] = []
 
   const env = envOverride({
-    'CATHERINESHULMANSQUOTES_TEST_API_ENTID': {},
-    'CATHERINESHULMANSQUOTES_TEST_LIVE': 'FALSE',
+    'CATHERINE_SHULMANS_QUOTES_TEST_API_ENTID': {},
+    'CATHERINE_SHULMANS_QUOTES_TEST_LIVE': 'FALSE',
   })
 
-  const live = 'TRUE' === env.CATHERINESHULMANSQUOTES_TEST_LIVE
+  const live = 'TRUE' === env.CATHERINE_SHULMANS_QUOTES_TEST_LIVE
 
   if (live) {
     const client = new CatherineShulmansQuotesSDK({
     })
 
-    let idmap: any = env['CATHERINESHULMANSQUOTES_TEST_API_ENTID']
+    let idmap: any = env['CATHERINE_SHULMANS_QUOTES_TEST_API_ENTID']
     if ('string' === typeof idmap && idmap.startsWith('{')) {
       idmap = JSON.parse(idmap)
     }

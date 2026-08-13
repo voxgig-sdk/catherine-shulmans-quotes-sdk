@@ -52,28 +52,28 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "endpoint",
+            ["name"] = "endpoints",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 3,
           },
           {
             ["active"] = true,
-            ["name"] = "mirror",
+            ["name"] = "mirrors",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 4,
           },
           {
             ["active"] = true,
-            ["name"] = "program",
+            ["name"] = "programs",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 5,
           },
           {
             ["active"] = true,
-            ["name"] = "statistic",
+            ["name"] = "statistics",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 6,
@@ -88,6 +88,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/",
                 ["parts"] = {
@@ -112,7 +113,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "episode",
+            ["name"] = "episodes",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 0,
@@ -173,6 +174,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/search/episodes",
                 ["parts"] = {
@@ -187,13 +189,14 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.episodes`",
                 },
                 ["index$"] = 0,
               },
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/episodes",
                 ["parts"] = {
@@ -203,7 +206,7 @@ local function make_config()
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.episodes`",
                 },
                 ["index$"] = 1,
               },
@@ -238,6 +241,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/episodes/{program}/{episode_id}",
                 ["parts"] = {
@@ -273,6 +277,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/episodes/{program}",
                 ["parts"] = {
@@ -310,6 +315,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/episodes/{program}/random",
                 ["parts"] = {
@@ -366,6 +372,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/github/{username}/analytics",
                 ["parts"] = {
@@ -432,6 +439,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/github/{username}/card",
                 ["parts"] = {
@@ -488,6 +496,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/github/{username}/languages",
                 ["parts"] = {
@@ -564,6 +573,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/search/quotes",
                 ["parts"] = {
@@ -578,13 +588,14 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.quotes`",
                 },
                 ["index$"] = 0,
               },
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/quotes",
                 ["parts"] = {
@@ -594,7 +605,7 @@ local function make_config()
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.quotes`",
                 },
                 ["index$"] = 1,
               },
@@ -621,6 +632,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/quote/{id}",
                 ["parts"] = {
@@ -642,6 +654,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/quote/random",
                 ["parts"] = {

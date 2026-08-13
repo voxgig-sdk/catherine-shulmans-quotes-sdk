@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import CatherineShulmansQuotesControl
-from core.error import CatherineShulmansQuotesError
-from core.result import CatherineShulmansQuotesResult
-from core.spec import CatherineShulmansQuotesSpec
+from catherineshulmansquotes_sdk.config import make_config
+from catherineshulmansquotes_sdk.features import _make_feature
+from catherineshulmansquotes_sdk.core.control import CatherineShulmansQuotesControl
+from catherineshulmansquotes_sdk.core.error import CatherineShulmansQuotesError
+from catherineshulmansquotes_sdk.core.result import CatherineShulmansQuotesResult
+from catherineshulmansquotes_sdk.core.spec import CatherineShulmansQuotesSpec
 
 
 # True when this SDK was generated with the named feature.

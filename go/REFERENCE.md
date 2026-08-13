@@ -121,10 +121,10 @@ fmt.Println(api.GetName()) // "api"
 | `api` | `string` | No |  |
 | `author` | `string` | No |  |
 | `disclaimer` | `string` | No |  |
-| `endpoint` | `map[string]any` | No |  |
-| `mirror` | `map[string]any` | No |  |
-| `program` | `[]any` | No |  |
-| `statistic` | `map[string]any` | No |  |
+| `endpoints` | `map[string]any` | No |  |
+| `mirrors` | `map[string]any` | No |  |
+| `programs` | `[]any` | No |  |
+| `statistics` | `map[string]any` | No |  |
 
 ### Operations
 
@@ -175,7 +175,7 @@ fmt.Println(episode.GetName()) // "episode"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `episode` | `[]any` | No |  |
+| `episodes` | `[]any` | No |  |
 | `id` | `string` | No |  |
 | `program` | `string` | No |  |
 | `title` | `string` | No |  |

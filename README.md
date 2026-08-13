@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = CatherineShulmansQuotesSDK.test()
-const apis = await client.Api().list()
-// apis is an array of bare Api records populated with mock data
-console.log(apis)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = CatherineShulmansQuotesSDK.test({
+  entity: {
+    github_card: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const githubcard = await client.GithubCard().load({ username: 'example_username' })
+// githubcard is the GithubCard entity, populated with mock data
+// — call githubcard.data() for the record itself
+console.log(githubcard)
 ```
 
 ### Python
 
 ```python
 client = CatherineShulmansQuotesSDK.test()
-apis = client.Api().list()
-print(apis)
+githubcard = client.GithubCard().load({"username": "example"})
+print(githubcard)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(apis)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = CatherineShulmansQuotesSDK::test([
-    "entity" => ["api" => ["test01" => []]],
+    "entity" => ["githubcard" => ["test01" => []]],
 ]);
-$apis = $client->Api()->list();
+$githubcard = $client->GithubCard()->load(["username" => "example"]);
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Api(nil).List(
+result, err := client.GithubCard(nil).Load(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.Api(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = CatherineShulmansQuotesSDK.test({
-  "entity" => { "api" => { "test01" => {} } },
+  "entity" => { "githubcard" => { "test01" => {} } },
 })
-apis = client.Api.list()
+githubcard = client.GithubCard.load({ "username" => "example" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:Api():list()
+local result, err = client:GithubCard():load({ username = "example" })
 ```
 
 ## Packages
@@ -110,7 +119,7 @@ import { CatherineShulmansQuotesSDK } from '@voxgig-sdk/catherine-shulmans-quote
 
 const client = new CatherineShulmansQuotesSDK()
 
-// List all apis (returns Api[])
+// List all apis (returns ApiEntity[] — .data() for the record)
 const apis = await client.Api().list()
 for (const api of apis) {
   console.log(api)
@@ -363,6 +372,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://github.com/l0v3m0n3y](https://github.com/l0v3m0n3y)
 

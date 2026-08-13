@@ -62,7 +62,7 @@ class QuoteEntityTest < Minitest::Test
     # The basic flow consumes synthetic IDs from the fixture. In live mode
     # without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup[:synthetic_only]
-      skip "live entity test uses synthetic IDs from fixture — set CATHERINESHULMANSQUOTES_TEST_QUOTE_ENTID JSON to run live"
+      skip "live entity test uses synthetic IDs from fixture — set CATHERINE_SHULMANS_QUOTES_TEST_QUOTE_ENTID JSON to run live"
       return
     end
     client = setup[:client]
@@ -87,7 +87,7 @@ class QuoteEntityTest < Minitest::Test
       "id" => quote_ref01_data["id"],
     }
     quote_ref01_data_dt0_loaded = quote_ref01_ent.load(quote_ref01_match_dt0, nil)
-    quote_ref01_data_dt0_load_result = Helpers.to_map(quote_ref01_data_dt0_loaded)
+    quote_ref01_data_dt0_load_result = Helpers.to_map(quote_ref01_data_dt0_loaded.respond_to?(:data_get) ? quote_ref01_data_dt0_loaded.data_get : quote_ref01_data_dt0_loaded)
     assert !quote_ref01_data_dt0_load_result.nil?
     assert_equal quote_ref01_data_dt0_load_result["id"], quote_ref01_data["id"]
 
@@ -120,22 +120,22 @@ def quote_basic_setup(extra)
   # Detect ENTID env override before envOverride consumes it. When live
   # mode is on without a real override, the basic test runs against synthetic
   # IDs from the fixture and 4xx's. Surface this so the test can skip.
-  entid_env_raw = ENV["CATHERINESHULMANSQUOTES_TEST_QUOTE_ENTID"]
+  entid_env_raw = ENV["CATHERINE_SHULMANS_QUOTES_TEST_QUOTE_ENTID"]
   idmap_overridden = !entid_env_raw.nil? && entid_env_raw.strip.start_with?("{")
 
   env = Runner.env_override({
-    "CATHERINESHULMANSQUOTES_TEST_QUOTE_ENTID" => idmap,
-    "CATHERINESHULMANSQUOTES_TEST_LIVE" => "FALSE",
-    "CATHERINESHULMANSQUOTES_TEST_EXPLAIN" => "FALSE",
+    "CATHERINE_SHULMANS_QUOTES_TEST_QUOTE_ENTID" => idmap,
+    "CATHERINE_SHULMANS_QUOTES_TEST_LIVE" => "FALSE",
+    "CATHERINE_SHULMANS_QUOTES_TEST_EXPLAIN" => "FALSE",
   })
 
   idmap_resolved = Helpers.to_map(
-    env["CATHERINESHULMANSQUOTES_TEST_QUOTE_ENTID"])
+    env["CATHERINE_SHULMANS_QUOTES_TEST_QUOTE_ENTID"])
   if idmap_resolved.nil?
     idmap_resolved = Helpers.to_map(idmap)
   end
 
-  if env["CATHERINESHULMANSQUOTES_TEST_LIVE"] == "TRUE"
+  if env["CATHERINE_SHULMANS_QUOTES_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
       },
@@ -144,13 +144,13 @@ def quote_basic_setup(extra)
     client = CatherineShulmansQuotesSDK.new(Helpers.to_map(merged_opts))
   end
 
-  live = env["CATHERINESHULMANSQUOTES_TEST_LIVE"] == "TRUE"
+  live = env["CATHERINE_SHULMANS_QUOTES_TEST_LIVE"] == "TRUE"
   {
     client: client,
     data: entity_data,
     idmap: idmap_resolved,
     env: env,
-    explain: env["CATHERINESHULMANSQUOTES_TEST_EXPLAIN"] == "TRUE",
+    explain: env["CATHERINE_SHULMANS_QUOTES_TEST_EXPLAIN"] == "TRUE",
     live: live,
     synthetic_only: live && !idmap_overridden,
     now: (Time.now.to_f * 1000).to_i,

@@ -16,11 +16,11 @@
 import pytest
 
 from catherineshulmansquotes_sdk import CatherineShulmansQuotesSDK
-from core.error import CatherineShulmansQuotesError
-from core.result import CatherineShulmansQuotesResult
-from core.response import CatherineShulmansQuotesResponse
-from core.spec import CatherineShulmansQuotesSpec
-from feature.base_feature import CatherineShulmansQuotesBaseFeature
+from catherineshulmansquotes_sdk.core.error import CatherineShulmansQuotesError
+from catherineshulmansquotes_sdk.core.result import CatherineShulmansQuotesResult
+from catherineshulmansquotes_sdk.core.response import CatherineShulmansQuotesResponse
+from catherineshulmansquotes_sdk.core.spec import CatherineShulmansQuotesSpec
+from catherineshulmansquotes_sdk.feature.base_feature import CatherineShulmansQuotesBaseFeature
 
 
 def _client():

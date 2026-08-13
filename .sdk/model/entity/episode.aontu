@@ -6,7 +6,7 @@ main: kit: entity: episode: {
 
   fields: [
     {
-      name: "episode"
+      name: "episodes"
       req: false
       type: "`$ARRAY`"
     }
@@ -73,7 +73,7 @@ main: kit: entity: episode: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.episodes`"
           }
         }
         {
@@ -85,7 +85,7 @@ main: kit: entity: episode: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.episodes`"
           }
         }
       ]

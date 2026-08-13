@@ -26,8 +26,8 @@ import {
 describe('GithubAnalyticsEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when CATHERINESHULMANSQUOTES_TEST_LIVE=TRUE.
-  afterEach(liveDelay('CATHERINESHULMANSQUOTES_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when CATHERINE_SHULMANS_QUOTES_TEST_LIVE=TRUE.
+  afterEach(liveDelay('CATHERINE_SHULMANS_QUOTES_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = CatherineShulmansQuotesSDK.test()

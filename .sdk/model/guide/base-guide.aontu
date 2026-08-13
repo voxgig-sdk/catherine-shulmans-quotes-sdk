@@ -14,6 +14,7 @@ guide: {
   entity: episode: {
     path: "/api/episodes": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.episodes`")|top
     }
     path: "/api/episodes/{program}": {
       rename: param: "program": *"id"
@@ -28,6 +29,7 @@ guide: {
     }
     path: "/api/search/episodes": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.episodes`")|top
     }
   }
 
@@ -59,9 +61,11 @@ guide: {
     }
     path: "/api/quotes": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.quotes`")|top
     }
     path: "/api/search/quotes": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.quotes`")|top
     }
   }
 

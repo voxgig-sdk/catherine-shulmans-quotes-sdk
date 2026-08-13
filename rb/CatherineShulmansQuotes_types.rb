@@ -19,25 +19,25 @@
 # @!attribute [rw] disclaimer
 #   @return [String, nil]
 #
-# @!attribute [rw] endpoint
+# @!attribute [rw] endpoints
 #   @return [Hash, nil]
 #
-# @!attribute [rw] mirror
+# @!attribute [rw] mirrors
 #   @return [Hash, nil]
 #
-# @!attribute [rw] program
+# @!attribute [rw] programs
 #   @return [Array, nil]
 #
-# @!attribute [rw] statistic
+# @!attribute [rw] statistics
 #   @return [Hash, nil]
 Api = Struct.new(
   :api,
   :author,
   :disclaimer,
-  :endpoint,
-  :mirror,
-  :program,
-  :statistic,
+  :endpoints,
+  :mirrors,
+  :programs,
+  :statistics,
   keyword_init: true
 )
 
@@ -52,31 +52,31 @@ Api = Struct.new(
 # @!attribute [rw] disclaimer
 #   @return [String, nil]
 #
-# @!attribute [rw] endpoint
+# @!attribute [rw] endpoints
 #   @return [Hash, nil]
 #
-# @!attribute [rw] mirror
+# @!attribute [rw] mirrors
 #   @return [Hash, nil]
 #
-# @!attribute [rw] program
+# @!attribute [rw] programs
 #   @return [Array, nil]
 #
-# @!attribute [rw] statistic
+# @!attribute [rw] statistics
 #   @return [Hash, nil]
 ApiListMatch = Struct.new(
   :api,
   :author,
   :disclaimer,
-  :endpoint,
-  :mirror,
-  :program,
-  :statistic,
+  :endpoints,
+  :mirrors,
+  :programs,
+  :statistics,
   keyword_init: true
 )
 
 # Episode entity data model.
 #
-# @!attribute [rw] episode
+# @!attribute [rw] episodes
 #   @return [Array, nil]
 #
 # @!attribute [rw] id
@@ -94,7 +94,7 @@ ApiListMatch = Struct.new(
 # @!attribute [rw] url
 #   @return [String, nil]
 Episode = Struct.new(
-  :episode,
+  :episodes,
   :id,
   :program,
   :title,
@@ -122,7 +122,7 @@ EpisodeLoadMatch = Struct.new(
 
 # Request payload for Episode#list.
 #
-# @!attribute [rw] episode
+# @!attribute [rw] episodes
 #   @return [Array, nil]
 #
 # @!attribute [rw] id
@@ -140,7 +140,7 @@ EpisodeLoadMatch = Struct.new(
 # @!attribute [rw] url
 #   @return [String, nil]
 EpisodeListMatch = Struct.new(
-  :episode,
+  :episodes,
   :id,
   :program,
   :title,

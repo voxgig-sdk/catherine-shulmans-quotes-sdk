@@ -9,24 +9,24 @@ export interface Api {
   api?: string
   author?: string
   disclaimer?: string
-  endpoint?: Record<string, any>
-  mirror?: Record<string, any>
-  program?: any[]
-  statistic?: Record<string, any>
+  endpoints?: Record<string, any>
+  mirrors?: Record<string, any>
+  programs?: any[]
+  statistics?: Record<string, any>
 }
 
 export interface ApiListMatch {
   api?: string
   author?: string
   disclaimer?: string
-  endpoint?: Record<string, any>
-  mirror?: Record<string, any>
-  program?: any[]
-  statistic?: Record<string, any>
+  endpoints?: Record<string, any>
+  mirrors?: Record<string, any>
+  programs?: any[]
+  statistics?: Record<string, any>
 }
 
 export interface Episode {
-  episode?: any[]
+  episodes?: any[]
   id?: string
   program?: string
   title?: string
@@ -38,10 +38,16 @@ export interface EpisodeLoadMatch {
   episode_id?: string
   program?: string
   id?: string
+
+  // Selects a custom action instead of the plain load:
+  //   'random'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface EpisodeListMatch {
-  episode?: any[]
+  episodes?: any[]
   id?: string
   program?: string
   title?: string
@@ -78,6 +84,12 @@ export interface Quote {
 
 export interface QuoteLoadMatch {
   id: number
+
+  // Selects a custom action instead of the plain load:
+  //   'random'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface QuoteListMatch {

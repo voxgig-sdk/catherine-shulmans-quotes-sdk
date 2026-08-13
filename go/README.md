@@ -68,12 +68,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-apis, err := client.Api(nil).List(nil, nil)
+githubcard, err := client.GithubCard(nil).Load(map[string]any{"username": "example"}, nil)
 if err != nil {
     // handle err
     return
 }
-_ = apis
+_ = githubcard
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -137,13 +137,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-api, err := client.Api(nil).List(
-    nil, nil,
+githubCard, err := client.GithubCard(nil).Load(
+    map[string]any{"username": "example"}, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(api) // the returned mock data
+fmt.Println(githubCard) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -270,10 +270,10 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | `"api"` |  |
 | `"author"` |  |
 | `"disclaimer"` |  |
-| `"endpoint"` |  |
-| `"mirror"` |  |
-| `"program"` |  |
-| `"statistic"` |  |
+| `"endpoints"` |  |
+| `"mirrors"` |  |
+| `"programs"` |  |
+| `"statistics"` |  |
 
 Operations: List.
 
@@ -283,7 +283,7 @@ API path: `/api/`
 
 | Field | Description |
 | --- | --- |
-| `"episode"` |  |
+| `"episodes"` |  |
 | `"id"` |  |
 | `"program"` |  |
 | `"title"` |  |
@@ -355,10 +355,10 @@ Create an instance: `api := client.Api(nil)`
 | `api` | `string` |  |
 | `author` | `string` |  |
 | `disclaimer` | `string` |  |
-| `endpoint` | `map[string]any` |  |
-| `mirror` | `map[string]any` |  |
-| `program` | `[]any` |  |
-| `statistic` | `map[string]any` |  |
+| `endpoints` | `map[string]any` |  |
+| `mirrors` | `map[string]any` |  |
+| `programs` | `[]any` |  |
+| `statistics` | `map[string]any` |  |
 
 #### Example: List
 
@@ -386,7 +386,7 @@ Create an instance: `episode := client.Episode(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `episode` | `[]any` |  |
+| `episodes` | `[]any` |  |
 | `id` | `string` |  |
 | `program` | `string` |  |
 | `title` | `string` |  |
@@ -586,15 +586,15 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `List`, the entity
+Entity instances are stateful. After a successful `Load`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-api := client.Api(nil)
-api.List(nil, nil)
+githubcard := client.GithubCard(nil)
+githubcard.Load(map[string]any{"username": "example"}, nil)
 
-// api.Data() now returns the api data from the last list
-// api.Match() returns the last match criteria
+// githubcard.Data() now returns the githubcard data from the last load
+// githubcard.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

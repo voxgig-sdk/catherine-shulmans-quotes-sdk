@@ -10,22 +10,22 @@
 ---@field api? string
 ---@field author? string
 ---@field disclaimer? string
----@field endpoint? table
----@field mirror? table
----@field program? table
----@field statistic? table
+---@field endpoints? table
+---@field mirrors? table
+---@field programs? table
+---@field statistics? table
 
 ---@class ApiListMatch
 ---@field api? string
 ---@field author? string
 ---@field disclaimer? string
----@field endpoint? table
----@field mirror? table
----@field program? table
----@field statistic? table
+---@field endpoints? table
+---@field mirrors? table
+---@field programs? table
+---@field statistics? table
 
 ---@class Episode
----@field episode? table
+---@field episodes? table
 ---@field id? string
 ---@field program? string
 ---@field title? string
@@ -38,7 +38,7 @@
 ---@field id? string
 
 ---@class EpisodeListMatch
----@field episode? table
+---@field episodes? table
 ---@field id? string
 ---@field program? string
 ---@field title? string

@@ -179,10 +179,10 @@ const api = client.Api()
 | `api` | `string` | No |  |
 | `author` | `string` | No |  |
 | `disclaimer` | `string` | No |  |
-| `endpoint` | `Record<string, any>` | No |  |
-| `mirror` | `Record<string, any>` | No |  |
-| `program` | `any[]` | No |  |
-| `statistic` | `Record<string, any>` | No |  |
+| `endpoints` | `Record<string, any>` | No |  |
+| `mirrors` | `Record<string, any>` | No |  |
+| `programs` | `any[]` | No |  |
+| `statistics` | `Record<string, any>` | No |  |
 
 ### Operations
 
@@ -232,12 +232,32 @@ const episode = client.Episode()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `episode` | `any[]` | No |  |
+| `episodes` | `any[]` | No |  |
 | `id` | `string` | No |  |
 | `program` | `string` | No |  |
 | `title` | `string` | No |  |
 | `total` | `number` | No |  |
 | `url` | `string` | No |  |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `random` | `/api/episodes/{program}/random` | `client.Episode().load({ $action: 'random', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Episode record — check the API definition for its shape.
+
+```ts
+const result = await client.Episode().load({
+  $action: 'random',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -430,6 +450,26 @@ const quote = client.Quote()
 | `id` | `number` | No |  |
 | `source` | `string` | No |  |
 | `text` | `string` | No |  |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `random` | `/api/quote/random` | `client.Quote().load({ $action: 'random', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Quote record — check the API definition for its shape.
+
+```ts
+const result = await client.Quote().load({
+  $action: 'random',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 

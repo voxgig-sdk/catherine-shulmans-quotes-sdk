@@ -51,7 +51,7 @@ GithubAnalytics is nested under username, so provide the `username`.
 
 ```php
 try {
-    // load() returns the bare GithubAnalytics record (throws on error).
+    // load() returns the ENTITY — call data_get() for the GithubAnalytics record (throws on error).
     $githubanalytics = $client->GithubAnalytics()->load(["username" => "example_username"]);
     print_r($githubanalytics);
 } catch (\Throwable $err) {
@@ -67,7 +67,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $apis = $client->Api()->list();
+    $githubcard = $client->GithubCard()->load(["username" => "example"]);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -139,9 +139,10 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = CatherineShulmansQuotesSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$api = $client->Api()->list();
-print_r($api);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$githubcard = $client->GithubCard()->load(["username" => "example"]);
+print_r($githubcard);
 ```
 
 ### Use a custom fetch function
@@ -244,7 +245,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -269,10 +270,10 @@ On error, `ok` is `false` and `$err` contains the error value.
 | `api` |  |
 | `author` |  |
 | `disclaimer` |  |
-| `endpoint` |  |
-| `mirror` |  |
-| `program` |  |
-| `statistic` |  |
+| `endpoints` |  |
+| `mirrors` |  |
+| `programs` |  |
+| `statistics` |  |
 
 Operations: List.
 
@@ -282,7 +283,7 @@ API path: `/api/`
 
 | Field | Description |
 | --- | --- |
-| `episode` |  |
+| `episodes` |  |
 | `id` |  |
 | `program` |  |
 | `title` |  |
@@ -354,10 +355,10 @@ Create an instance: `$api = $client->Api();`
 | `api` | `string` |  |
 | `author` | `string` |  |
 | `disclaimer` | `string` |  |
-| `endpoint` | `array` |  |
-| `mirror` | `array` |  |
-| `program` | `array` |  |
-| `statistic` | `array` |  |
+| `endpoints` | `array` |  |
+| `mirrors` | `array` |  |
+| `programs` | `array` |  |
+| `statistics` | `array` |  |
 
 #### Example: List
 
@@ -382,7 +383,7 @@ Create an instance: `$episode = $client->Episode();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `episode` | `array` |  |
+| `episodes` | `array` |  |
 | `id` | `string` |  |
 | `program` | `string` |  |
 | `title` | `string` |  |
@@ -392,7 +393,7 @@ Create an instance: `$episode = $client->Episode();`
 #### Example: Load
 
 ```php
-// load() returns the bare Episode record (throws on error).
+// load() returns the ENTITY — call data_get() for the Episode record (throws on error).
 $episode = $client->Episode()->load(["id" => "episode_id"]);
 ```
 
@@ -417,7 +418,7 @@ Create an instance: `$github_analytics = $client->GithubAnalytics();`
 #### Example: Load
 
 ```php
-// load() returns the bare GithubAnalytics record (throws on error).
+// load() returns the ENTITY — call data_get() for the GithubAnalytics record (throws on error).
 $github_analytics = $client->GithubAnalytics()->load(["username" => "username"]);
 ```
 
@@ -435,7 +436,7 @@ Create an instance: `$github_card = $client->GithubCard();`
 #### Example: Load
 
 ```php
-// load() returns the bare GithubCard record (throws on error).
+// load() returns the ENTITY — call data_get() for the GithubCard record (throws on error).
 $github_card = $client->GithubCard()->load(["username" => "username"]);
 ```
 
@@ -453,7 +454,7 @@ Create an instance: `$github_language = $client->GithubLanguage();`
 #### Example: Load
 
 ```php
-// load() returns the bare GithubLanguage record (throws on error).
+// load() returns the ENTITY — call data_get() for the GithubLanguage record (throws on error).
 $github_language = $client->GithubLanguage()->load(["username" => "username"]);
 ```
 
@@ -480,7 +481,7 @@ Create an instance: `$quote = $client->Quote();`
 #### Example: Load
 
 ```php
-// load() returns the bare Quote record (throws on error).
+// load() returns the ENTITY — call data_get() for the Quote record (throws on error).
 $quote = $client->Quote()->load(["id" => 1]);
 ```
 
@@ -564,15 +565,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$api = $client->Api();
-$api->list();
+$githubcard = $client->GithubCard();
+$githubcard->load(["username" => "example"]);
 
-// $api->data_get() now returns the api data from the last list
-// $api->match_get() returns the last match criteria
+// $githubcard->data_get() now returns the githubcard data from the last load
+// $githubcard->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

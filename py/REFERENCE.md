@@ -110,10 +110,10 @@ api = client.Api()
 | `api` | `str` | No |  |
 | `author` | `str` | No |  |
 | `disclaimer` | `str` | No |  |
-| `endpoint` | `dict` | No |  |
-| `mirror` | `dict` | No |  |
-| `program` | `list` | No |  |
-| `statistic` | `dict` | No |  |
+| `endpoints` | `dict` | No |  |
+| `mirrors` | `dict` | No |  |
+| `programs` | `list` | No |  |
+| `statistics` | `dict` | No |  |
 
 ### Operations
 
@@ -166,7 +166,7 @@ episode = client.Episode()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `episode` | `list` | No |  |
+| `episodes` | `list` | No |  |
 | `id` | `str` | No |  |
 | `program` | `str` | No |  |
 | `title` | `str` | No |  |

@@ -35,7 +35,9 @@ const client = new CatherineShulmansQuotesSDK()
 
 ### 2. List api records
 
-`list()` resolves to an array of Api objects — iterate it directly:
+`list()` resolves to an array of Api ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const apis = await client.Api().list()
@@ -68,10 +70,10 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const apis = await client.Api().list()
-  console.log(apis)
+  const githubcard = await client.GithubCard().load({ username: "example" })
+  console.log(githubcard)
 } catch (err) {
-  console.error('list failed:', err)
+  console.error('load failed:', err)
 }
 ```
 
@@ -135,9 +137,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = CatherineShulmansQuotesSDK.test()
 
-const api = await client.Api().list()
-// api is a bare entity populated with mock response data
-console.log(api)
+const githubcard = await client.GithubCard().load({ username: 'example_username' })
+// githubcard is the entity, populated with mock response data
+// — call githubcard.data() for the record itself
+console.log(githubcard)
 ```
 
 You can also use the instance method:
@@ -152,10 +155,10 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Api()
+const entity = client.GithubCard()
 
 // First call runs the operation and stores its result
-await entity.list()
+await entity.load({ username: 'example_username' })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -310,10 +313,10 @@ The `prepare()` method returns:
 | `api` |  |
 | `author` |  |
 | `disclaimer` |  |
-| `endpoint` |  |
-| `mirror` |  |
-| `program` |  |
-| `statistic` |  |
+| `endpoints` |  |
+| `mirrors` |  |
+| `programs` |  |
+| `statistics` |  |
 
 Operations: list.
 
@@ -323,7 +326,7 @@ API path: `/api/`
 
 | Field | Description |
 | --- | --- |
-| `episode` |  |
+| `episodes` |  |
 | `id` |  |
 | `program` |  |
 | `title` |  |
@@ -395,10 +398,10 @@ Create an instance: `const api = client.Api()`
 | `api` | `string` |  |
 | `author` | `string` |  |
 | `disclaimer` | `string` |  |
-| `endpoint` | `Record<string, any>` |  |
-| `mirror` | `Record<string, any>` |  |
-| `program` | `any[]` |  |
-| `statistic` | `Record<string, any>` |  |
+| `endpoints` | `Record<string, any>` |  |
+| `mirrors` | `Record<string, any>` |  |
+| `programs` | `any[]` |  |
+| `statistics` | `Record<string, any>` |  |
 
 #### Example: List
 
@@ -422,7 +425,7 @@ Create an instance: `const episode = client.Episode()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `episode` | `any[]` |  |
+| `episodes` | `any[]` |  |
 | `id` | `string` |  |
 | `program` | `string` |  |
 | `title` | `string` |  |
@@ -589,16 +592,16 @@ import { CatherineShulmansQuotesSDK } from '@voxgig-sdk/catherine-shulmans-quote
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const api = client.Api()
-await api.list()
+const githubcard = client.GithubCard()
+await githubcard.load({ username: "example" })
 
-// api.data() now returns the api data from the last `list`
-// api.match() returns the last match criteria
+// githubcard.data() now returns the githubcard data from the last `load`
+// githubcard.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

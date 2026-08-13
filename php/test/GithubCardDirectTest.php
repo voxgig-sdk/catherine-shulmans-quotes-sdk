@@ -73,11 +73,11 @@ function github_card_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "CATHERINESHULMANSQUOTES_TEST_GITHUB_CARD_ENTID" => [],
-        "CATHERINESHULMANSQUOTES_TEST_LIVE" => "FALSE",
+        "CATHERINE_SHULMANS_QUOTES_TEST_GITHUB_CARD_ENTID" => [],
+        "CATHERINE_SHULMANS_QUOTES_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["CATHERINESHULMANSQUOTES_TEST_LIVE"] === "TRUE";
+    $live = $env["CATHERINE_SHULMANS_QUOTES_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

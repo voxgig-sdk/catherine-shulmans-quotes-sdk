@@ -64,7 +64,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local apis, err = client:Api():list()
+local githubcard, err = client:GithubCard():load({ username = "example" })
 if err then error(err) end
 ```
 
@@ -122,7 +122,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Api():list()
+local result, err = client:GithubCard():load({ username = "example" })
 -- result is the returned data; err is set on failure
 ```
 
@@ -235,9 +235,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local api, err = client:Api():load()
+    local episode, err = client:Episode():load({ id = "example_id" })
     if err then error(err) end
-    -- api is the loaded record
+    -- episode is the loaded record
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -251,10 +251,10 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | `api` |  |
 | `author` |  |
 | `disclaimer` |  |
-| `endpoint` |  |
-| `mirror` |  |
-| `program` |  |
-| `statistic` |  |
+| `endpoints` |  |
+| `mirrors` |  |
+| `programs` |  |
+| `statistics` |  |
 
 Operations: List.
 
@@ -264,7 +264,7 @@ API path: `/api/`
 
 | Field | Description |
 | --- | --- |
-| `episode` |  |
+| `episodes` |  |
 | `id` |  |
 | `program` |  |
 | `title` |  |
@@ -336,10 +336,10 @@ Create an instance: `local api = client:Api(nil)`
 | `api` | `string` |  |
 | `author` | `string` |  |
 | `disclaimer` | `string` |  |
-| `endpoint` | `table` |  |
-| `mirror` | `table` |  |
-| `program` | `table` |  |
-| `statistic` | `table` |  |
+| `endpoints` | `table` |  |
+| `mirrors` | `table` |  |
+| `programs` | `table` |  |
+| `statistics` | `table` |  |
 
 #### Example: List
 
@@ -363,7 +363,7 @@ Create an instance: `local episode = client:Episode(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `episode` | `table` |  |
+| `episodes` | `table` |  |
 | `id` | `string` |  |
 | `program` | `string` |  |
 | `title` | `string` |  |
@@ -538,15 +538,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local api = client:Api()
-api:list()
+local githubcard = client:GithubCard()
+githubcard:load({ username = "example" })
 
--- api:data_get() now returns the api data from the last list
--- api:match_get() returns the last match criteria
+-- githubcard:data_get() now returns the githubcard data from the last load
+-- githubcard:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

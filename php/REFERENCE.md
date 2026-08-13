@@ -115,10 +115,10 @@ $api = $client->Api();
 | `api` | `string` | No |  |
 | `author` | `string` | No |  |
 | `disclaimer` | `string` | No |  |
-| `endpoint` | `array` | No |  |
-| `mirror` | `array` | No |  |
-| `program` | `array` | No |  |
-| `statistic` | `array` | No |  |
+| `endpoints` | `array` | No |  |
+| `mirrors` | `array` | No |  |
+| `programs` | `array` | No |  |
+| `statistics` | `array` | No |  |
 
 ### Operations
 
@@ -170,7 +170,7 @@ $episode = $client->Episode();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `episode` | `array` | No |  |
+| `episodes` | `array` | No |  |
 | `id` | `string` | No |  |
 | `program` | `string` | No |  |
 | `title` | `string` | No |  |

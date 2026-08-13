@@ -53,28 +53,28 @@ module CatherineShulmansQuotesConfig
             },
             {
               "active" => true,
-              "name" => "endpoint",
+              "name" => "endpoints",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 3,
             },
             {
               "active" => true,
-              "name" => "mirror",
+              "name" => "mirrors",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 4,
             },
             {
               "active" => true,
-              "name" => "program",
+              "name" => "programs",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 5,
             },
             {
               "active" => true,
-              "name" => "statistic",
+              "name" => "statistics",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 6,
@@ -89,6 +89,7 @@ module CatherineShulmansQuotesConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/",
                   "parts" => [
@@ -113,7 +114,7 @@ module CatherineShulmansQuotesConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "episode",
+              "name" => "episodes",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 0,
@@ -174,6 +175,7 @@ module CatherineShulmansQuotesConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/search/episodes",
                   "parts" => [
@@ -188,13 +190,14 @@ module CatherineShulmansQuotesConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.episodes`",
                   },
                   "index$" => 0,
                 },
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/episodes",
                   "parts" => [
@@ -204,7 +207,7 @@ module CatherineShulmansQuotesConfig
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.episodes`",
                   },
                   "index$" => 1,
                 },
@@ -239,6 +242,7 @@ module CatherineShulmansQuotesConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/episodes/{program}/{episode_id}",
                   "parts" => [
@@ -274,6 +278,7 @@ module CatherineShulmansQuotesConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/episodes/{program}",
                   "parts" => [
@@ -311,6 +316,7 @@ module CatherineShulmansQuotesConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/episodes/{program}/random",
                   "parts" => [
@@ -367,6 +373,7 @@ module CatherineShulmansQuotesConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/github/{username}/analytics",
                   "parts" => [
@@ -433,6 +440,7 @@ module CatherineShulmansQuotesConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/github/{username}/card",
                   "parts" => [
@@ -489,6 +497,7 @@ module CatherineShulmansQuotesConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/github/{username}/languages",
                   "parts" => [
@@ -565,6 +574,7 @@ module CatherineShulmansQuotesConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/search/quotes",
                   "parts" => [
@@ -579,13 +589,14 @@ module CatherineShulmansQuotesConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.quotes`",
                   },
                   "index$" => 0,
                 },
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/quotes",
                   "parts" => [
@@ -595,7 +606,7 @@ module CatherineShulmansQuotesConfig
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.quotes`",
                   },
                   "index$" => 1,
                 },
@@ -622,6 +633,7 @@ module CatherineShulmansQuotesConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/quote/{id}",
                   "parts" => [
@@ -643,6 +655,7 @@ module CatherineShulmansQuotesConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/quote/random",
                   "parts" => [

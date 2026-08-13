@@ -113,10 +113,10 @@ local api = client:Api(nil)
 | `api` | `string` | No |  |
 | `author` | `string` | No |  |
 | `disclaimer` | `string` | No |  |
-| `endpoint` | `table` | No |  |
-| `mirror` | `table` | No |  |
-| `program` | `table` | No |  |
-| `statistic` | `table` | No |  |
+| `endpoints` | `table` | No |  |
+| `mirrors` | `table` | No |  |
+| `programs` | `table` | No |  |
+| `statistics` | `table` | No |  |
 
 ### Operations
 
@@ -168,7 +168,7 @@ local episode = client:Episode(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `episode` | `table` | No |  |
+| `episodes` | `table` | No |  |
 | `id` | `string` | No |  |
 | `program` | `string` | No |  |
 | `title` | `string` | No |  |

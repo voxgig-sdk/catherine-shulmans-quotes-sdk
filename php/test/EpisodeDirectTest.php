@@ -122,11 +122,11 @@ function episode_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "CATHERINESHULMANSQUOTES_TEST_EPISODE_ENTID" => [],
-        "CATHERINESHULMANSQUOTES_TEST_LIVE" => "FALSE",
+        "CATHERINE_SHULMANS_QUOTES_TEST_EPISODE_ENTID" => [],
+        "CATHERINE_SHULMANS_QUOTES_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["CATHERINESHULMANSQUOTES_TEST_LIVE"] === "TRUE";
+    $live = $env["CATHERINE_SHULMANS_QUOTES_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

@@ -53,7 +53,7 @@ except Exception as err:
 ### 3. Load a githubanalytics
 
 GithubAnalytics is nested under username, so provide the `username`.
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -70,10 +70,10 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    apis = client.Api().list()
-    print(apis)
+    githubcard = client.GithubCard().load({"username": "example"})
+    print(githubcard)
 except Exception as err:
-    print(f"list failed: {err}")
+    print(f"load failed: {err}")
 ```
 
 `direct()` does **not** raise — it returns the result envelope. Branch
@@ -137,9 +137,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = CatherineShulmansQuotesSDK.test()
 
-# Entity ops return the bare record and raise on error.
-api = client.Api().list()
-# api contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+githubcard = client.GithubCard().load({"username": "example"})
+# githubcard contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -239,7 +240,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -264,10 +265,10 @@ On error, `ok` is `False` and `err` contains the error value.
 | `api` |  |
 | `author` |  |
 | `disclaimer` |  |
-| `endpoint` |  |
-| `mirror` |  |
-| `program` |  |
-| `statistic` |  |
+| `endpoints` |  |
+| `mirrors` |  |
+| `programs` |  |
+| `statistics` |  |
 
 Operations: List.
 
@@ -277,7 +278,7 @@ API path: `/api/`
 
 | Field | Description |
 | --- | --- |
-| `episode` |  |
+| `episodes` |  |
 | `id` |  |
 | `program` |  |
 | `title` |  |
@@ -349,10 +350,10 @@ Create an instance: `api = client.Api()`
 | `api` | `str` |  |
 | `author` | `str` |  |
 | `disclaimer` | `str` |  |
-| `endpoint` | `dict` |  |
-| `mirror` | `dict` |  |
-| `program` | `list` |  |
-| `statistic` | `dict` |  |
+| `endpoints` | `dict` |  |
+| `mirrors` | `dict` |  |
+| `programs` | `list` |  |
+| `statistics` | `dict` |  |
 
 #### Example: List
 
@@ -376,7 +377,7 @@ Create an instance: `episode = client.Episode()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `episode` | `list` |  |
+| `episodes` | `list` |  |
 | `id` | `str` |  |
 | `program` | `str` |  |
 | `title` | `str` |  |
@@ -550,15 +551,15 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-api = client.Api()
-api.list()
+githubcard = client.GithubCard()
+githubcard.load({"username": "example"})
 
-# api.data_get() now returns the api data from the last list
-# api.match_get() returns the last match criteria
+# githubcard.data_get() now returns the githubcard data from the last load
+# githubcard.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration
