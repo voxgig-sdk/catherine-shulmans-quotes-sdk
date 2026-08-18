@@ -1,6 +1,20 @@
 # CatherineShulmansQuotes SDK configuration
 
 module CatherineShulmansQuotesConfig
+  # Return the process-wide config, built once on first use. The SDK reads
+  # the config on every request and never writes to it, so one instance is
+  # shared by every client rather than rebuilt per client.
+  #
+  # The returned hash is shared: treat it as read-only. Callers that need to
+  # mutate should use make_config, which always returns a fresh copy.
+  def self.shared_config
+    @shared_config ||= make_config
+  end
+
+
+  # Build a fresh, fully materialised config hash. Every call rebuilds the
+  # whole structure, so prefer shared_config unless you need a private copy
+  # you intend to mutate.
   def self.make_config
     {
       "main" => {
@@ -31,53 +45,32 @@ module CatherineShulmansQuotesConfig
         "api" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "api",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "author",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "disclaimer",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "endpoints",
-              "req" => false,
               "type" => "`$OBJECT`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "mirrors",
-              "req" => false,
               "type" => "`$OBJECT`",
-              "index$" => 4,
             },
             {
-              "active" => true,
               "name" => "programs",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 5,
             },
             {
-              "active" => true,
               "name" => "statistics",
-              "req" => false,
               "type" => "`$OBJECT`",
-              "index$" => 6,
             },
           ],
           "name" => "api",
@@ -87,7 +80,6 @@ module CatherineShulmansQuotesConfig
               "name" => "list",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
@@ -100,10 +92,8 @@ module CatherineShulmansQuotesConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "list",
             },
           },
           "relations" => {
@@ -113,46 +103,28 @@ module CatherineShulmansQuotesConfig
         "episode" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "episodes",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "id",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "program",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "title",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "total",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 4,
             },
             {
-              "active" => true,
               "name" => "url",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 5,
             },
           ],
           "name" => "episode",
@@ -162,11 +134,9 @@ module CatherineShulmansQuotesConfig
               "name" => "list",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "q",
                         "orig" => "q",
@@ -192,10 +162,8 @@ module CatherineShulmansQuotesConfig
                     "req" => "`reqdata`",
                     "res" => "`body.episodes`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
@@ -209,36 +177,29 @@ module CatherineShulmansQuotesConfig
                     "req" => "`reqdata`",
                     "res" => "`body.episodes`",
                   },
-                  "index$" => 1,
                 },
               ],
-              "key$" => "list",
             },
             "load" => {
               "input" => "data",
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "episode_id",
                         "orig" => "episode_id",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "program",
                         "orig" => "program",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 1,
                       },
                     ],
                   },
@@ -261,20 +222,16 @@ module CatherineShulmansQuotesConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "id",
                         "orig" => "program",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                     ],
                   },
@@ -300,14 +257,11 @@ module CatherineShulmansQuotesConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 1,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "program",
                         "orig" => "program",
@@ -335,10 +289,8 @@ module CatherineShulmansQuotesConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 2,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {
@@ -358,18 +310,15 @@ module CatherineShulmansQuotesConfig
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "example" => "l0v3m0n3y",
                         "kind" => "param",
                         "name" => "username",
                         "orig" => "username",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                     ],
                   },
@@ -391,10 +340,8 @@ module CatherineShulmansQuotesConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {
@@ -414,28 +361,23 @@ module CatherineShulmansQuotesConfig
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "example" => "l0v3m0n3y",
                         "kind" => "param",
                         "name" => "username",
                         "orig" => "username",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                     ],
                     "query" => [
                       {
-                        "active" => true,
                         "example" => "shulman",
                         "kind" => "query",
                         "name" => "style",
                         "orig" => "style",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                     ],
@@ -459,10 +401,8 @@ module CatherineShulmansQuotesConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {
@@ -482,18 +422,15 @@ module CatherineShulmansQuotesConfig
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "example" => "l0v3m0n3y",
                         "kind" => "param",
                         "name" => "username",
                         "orig" => "username",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                     ],
                   },
@@ -515,10 +452,8 @@ module CatherineShulmansQuotesConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {
@@ -532,25 +467,16 @@ module CatherineShulmansQuotesConfig
         "quote" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "id",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "source",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "text",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 2,
             },
           ],
           "name" => "quote",
@@ -560,11 +486,9 @@ module CatherineShulmansQuotesConfig
               "name" => "list",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "example" => "насилие",
                         "kind" => "query",
                         "name" => "q",
@@ -591,10 +515,8 @@ module CatherineShulmansQuotesConfig
                     "req" => "`reqdata`",
                     "res" => "`body.quotes`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
@@ -608,28 +530,23 @@ module CatherineShulmansQuotesConfig
                     "req" => "`reqdata`",
                     "res" => "`body.quotes`",
                   },
-                  "index$" => 1,
                 },
               ],
-              "key$" => "list",
             },
             "load" => {
               "input" => "data",
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "example" => 1,
                         "kind" => "param",
                         "name" => "id",
                         "orig" => "id",
                         "reqd" => true,
                         "type" => "`$INTEGER`",
-                        "index$" => 0,
                       },
                     ],
                   },
@@ -650,10 +567,8 @@ module CatherineShulmansQuotesConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
@@ -670,10 +585,8 @@ module CatherineShulmansQuotesConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 1,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {

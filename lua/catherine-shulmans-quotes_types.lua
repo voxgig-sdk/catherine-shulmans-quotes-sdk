@@ -33,9 +33,7 @@
 ---@field url? string
 
 ---@class EpisodeLoadMatch
----@field episode_id? string
----@field program? string
----@field id? string
+---@field id string
 
 ---@class EpisodeListMatch
 ---@field episodes? table

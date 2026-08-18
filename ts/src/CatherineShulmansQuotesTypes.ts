@@ -35,9 +35,7 @@ export interface Episode {
 }
 
 export interface EpisodeLoadMatch {
-  episode_id?: string
-  program?: string
-  id?: string
+  id: string
 
   // Selects a custom action instead of the plain load:
   //   'random'

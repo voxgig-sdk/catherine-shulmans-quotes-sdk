@@ -45,9 +45,7 @@ class Episode(TypedDict, total=False):
     url: str
 
 
-class EpisodeLoadMatch(TypedDict, total=False):
-    episode_id: str
-    program: str
+class EpisodeLoadMatch(TypedDict):
     id: str
 
 

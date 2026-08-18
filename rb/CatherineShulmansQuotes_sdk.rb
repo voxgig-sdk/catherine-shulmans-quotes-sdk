@@ -28,7 +28,7 @@ class CatherineShulmansQuotesSDK
     utility = CatherineShulmansQuotesUtility.new
     @_utility = utility
 
-    config = CatherineShulmansQuotesConfig.make_config
+    config = CatherineShulmansQuotesConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

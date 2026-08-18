@@ -105,17 +105,9 @@ Episode = Struct.new(
 
 # Request payload for Episode#load.
 #
-# @!attribute [rw] episode_id
-#   @return [String, nil]
-#
-# @!attribute [rw] program
-#   @return [String, nil]
-#
 # @!attribute [rw] id
-#   @return [String, nil]
+#   @return [String]
 EpisodeLoadMatch = Struct.new(
-  :episode_id,
-  :program,
   :id,
   keyword_init: true
 )

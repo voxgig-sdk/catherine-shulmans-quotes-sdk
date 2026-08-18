@@ -23,8 +23,8 @@ class CatherineShulmansQuotesSDK:
         utility = CatherineShulmansQuotesUtility()
         self._utility = utility
 
-        from catherineshulmansquotes_sdk.config import make_config
-        config = make_config()
+        from catherineshulmansquotes_sdk.config import shared_config
+        config = shared_config()
 
         self._rootctx = utility.make_context({
             "client": self,

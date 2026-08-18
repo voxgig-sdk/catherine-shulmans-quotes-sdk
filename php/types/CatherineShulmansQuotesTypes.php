@@ -50,9 +50,7 @@ class Episode
 /** Request payload for Episode#load. */
 class EpisodeLoadMatch
 {
-    public ?string $episode_id = null;
-    public ?string $program = null;
-    public ?string $id = null;
+    public string $id;
 }
 
 /** Request payload for Episode#list. */
