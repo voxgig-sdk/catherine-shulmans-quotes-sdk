@@ -1,8 +1,0 @@
-# Entity Models
-
-@"api.aontu"
-@"episode.aontu"
-@"github_analytics.aontu"
-@"github_card.aontu"
-@"github_language.aontu"
-@"quote.aontu"

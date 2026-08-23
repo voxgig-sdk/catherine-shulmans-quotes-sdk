@@ -33,6 +33,9 @@ class CatherineShulmansQuotesConfig
         return [
             "main" => [
                 "name" => "CatherineShulmansQuotes",
+                "slug" => "catherine-shulmans-quotes",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
