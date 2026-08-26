@@ -28,6 +28,7 @@ module CatherineShulmansQuotesConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
