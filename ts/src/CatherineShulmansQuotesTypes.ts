@@ -65,6 +65,7 @@ export interface GithubCard {
 
 export interface GithubCardLoadMatch {
   username: string
+  style?: string
 }
 
 export interface GithubLanguage {

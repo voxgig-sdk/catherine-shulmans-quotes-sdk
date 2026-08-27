@@ -84,6 +84,7 @@ class GithubCard
 class GithubCardLoadMatch
 {
     public string $username;
+    public ?string $style = null;
 }
 
 /** GithubLanguage entity data model. */

@@ -162,8 +162,12 @@ end
 #
 # @!attribute [rw] username
 #   @return [String]
+#
+# @!attribute [rw] style
+#   @return [String, nil]
 GithubCardLoadMatch = Struct.new(
   :username,
+  :style,
   keyword_init: true
 )
 

@@ -75,6 +75,7 @@ type GithubCard struct {
 // GithubCardLoadMatch is the typed request payload for GithubCard.LoadTyped.
 type GithubCardLoadMatch struct {
 	Username string `json:"username"`
+	Style *string `json:"style,omitempty"`
 }
 
 // GithubLanguage is the typed data model for the github_language entity.

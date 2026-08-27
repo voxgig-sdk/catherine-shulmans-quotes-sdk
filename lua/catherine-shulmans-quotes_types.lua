@@ -52,6 +52,7 @@
 
 ---@class GithubCardLoadMatch
 ---@field username string
+---@field style? string
 
 ---@class GithubLanguage
 

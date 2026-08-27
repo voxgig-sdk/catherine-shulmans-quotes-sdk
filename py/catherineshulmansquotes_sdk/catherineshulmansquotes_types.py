@@ -70,8 +70,12 @@ class GithubCard(TypedDict):
     pass
 
 
-class GithubCardLoadMatch(TypedDict):
+class GithubCardLoadMatchRequired(TypedDict):
     username: str
+
+
+class GithubCardLoadMatch(GithubCardLoadMatchRequired, total=False):
+    style: str
 
 
 class GithubLanguage(TypedDict):
