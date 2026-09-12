@@ -50,7 +50,7 @@ func TestGithubAnalyticsEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		githubAnalyticsRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.github_analytics", setup.data)))
+		githubAnalyticsRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.github_analytics")))
 		var githubAnalyticsRef01Data map[string]any
 		if len(githubAnalyticsRef01DataRaw) > 0 {
 			githubAnalyticsRef01Data = core.ToMapAny(githubAnalyticsRef01DataRaw[0][1])
@@ -97,7 +97,7 @@ func github_analyticsBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"github_analytics01", "github_analytics02", "github_analytics03", "github01", "github02", "github03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -125,10 +125,22 @@ func github_analyticsBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["CATHERINE_SHULMANS_QUOTES_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewCatherineShulmansQuotesSDK(core.ToMapAny(mergedOpts))
 	}

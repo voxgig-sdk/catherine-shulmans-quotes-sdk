@@ -39,7 +39,15 @@ main: kit: entity: episode: {
 
   id: {
     field: "id"
+    from: {
+      program: "program"
+    }
     name: "id"
+    parts: [
+      "program"
+      "episode_id"
+    ]
+    sep: "/"
   }
 
   name: "episode"
@@ -61,10 +69,16 @@ main: kit: entity: episode: {
           }
           method: "GET"
           orig: "/api/search/episodes"
-          parts: [
-            "api"
-            "search"
-            "episodes"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "search"
+            }
+            {
+              lit: "episodes"
+            }
           ]
           select: {
             exist: [
@@ -79,9 +93,13 @@ main: kit: entity: episode: {
         {
           method: "GET"
           orig: "/api/episodes"
-          parts: [
-            "api"
-            "episodes"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "episodes"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -114,11 +132,19 @@ main: kit: entity: episode: {
           }
           method: "GET"
           orig: "/api/episodes/{program}/{episode_id}"
-          parts: [
-            "api"
-            "episodes"
-            "{program}"
-            "{episode_id}"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "episodes"
+            }
+            {
+              var: "program"
+            }
+            {
+              var: "episode_id"
+            }
           ]
           select: {
             exist: [
@@ -145,16 +171,22 @@ main: kit: entity: episode: {
           }
           method: "GET"
           orig: "/api/episodes/{program}"
-          parts: [
-            "api"
-            "episodes"
-            "{id}"
-          ]
           rename: {
             param: {
               program: "id"
             }
           }
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "episodes"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"
@@ -179,11 +211,19 @@ main: kit: entity: episode: {
           }
           method: "GET"
           orig: "/api/episodes/{program}/random"
-          parts: [
-            "api"
-            "episodes"
-            "{program}"
-            "random"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "episodes"
+            }
+            {
+              var: "program"
+            }
+            {
+              lit: "random"
+            }
           ]
           select: {
             "$action": "random"

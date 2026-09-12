@@ -47,10 +47,16 @@ main: kit: entity: quote: {
           }
           method: "GET"
           orig: "/api/search/quotes"
-          parts: [
-            "api"
-            "search"
-            "quotes"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "search"
+            }
+            {
+              lit: "quotes"
+            }
           ]
           select: {
             exist: [
@@ -65,9 +71,13 @@ main: kit: entity: quote: {
         {
           method: "GET"
           orig: "/api/quotes"
-          parts: [
-            "api"
-            "quotes"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "quotes"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -94,10 +104,16 @@ main: kit: entity: quote: {
           }
           method: "GET"
           orig: "/api/quote/{id}"
-          parts: [
-            "api"
-            "quote"
-            "{id}"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "quote"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -112,10 +128,16 @@ main: kit: entity: quote: {
         {
           method: "GET"
           orig: "/api/quote/random"
-          parts: [
-            "api"
-            "quote"
-            "random"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "quote"
+            }
+            {
+              lit: "random"
+            }
           ]
           select: {
             "$action": "random"

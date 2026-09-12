@@ -24,11 +24,19 @@ main: kit: entity: github_analytics: {
           }
           method: "GET"
           orig: "/api/github/{username}/analytics"
-          parts: [
-            "api"
-            "github"
-            "{username}"
-            "analytics"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "github"
+            }
+            {
+              var: "username"
+            }
+            {
+              lit: "analytics"
+            }
           ]
           select: {
             exist: [

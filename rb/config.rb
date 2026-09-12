@@ -88,14 +88,19 @@ module CatherineShulmansQuotesConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/",
-                  "parts" => [
-                    "api",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                  ],
                 },
               ],
             },
@@ -131,6 +136,18 @@ module CatherineShulmansQuotesConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "from" => {
+              "program" => "program",
+            },
+            "name" => "id",
+            "parts" => [
+              "program",
+              "episode_id",
+            ],
+            "sep" => "/",
+          },
           "name" => "episode",
           "op" => {
             "list" => {
@@ -152,10 +169,16 @@ module CatherineShulmansQuotesConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/search/episodes",
-                  "parts" => [
-                    "api",
-                    "search",
-                    "episodes",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "search",
+                    },
+                    {
+                      "lit" => "episodes",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -166,21 +189,34 @@ module CatherineShulmansQuotesConfig
                     "req" => "`reqdata`",
                     "res" => "`body.episodes`",
                   },
+                  "parts" => [
+                    "api",
+                    "search",
+                    "episodes",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/episodes",
-                  "parts" => [
-                    "api",
-                    "episodes",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "episodes",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.episodes`",
                   },
+                  "parts" => [
+                    "api",
+                    "episodes",
+                  ],
                 },
               ],
             },
@@ -210,11 +246,19 @@ module CatherineShulmansQuotesConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/episodes/{program}/{episode_id}",
-                  "parts" => [
-                    "api",
-                    "episodes",
-                    "{program}",
-                    "{episode_id}",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "episodes",
+                    },
+                    {
+                      "var" => "program",
+                    },
+                    {
+                      "var" => "episode_id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -226,6 +270,12 @@ module CatherineShulmansQuotesConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "episodes",
+                    "{program}",
+                    "{episode_id}",
+                  ],
                 },
                 {
                   "args" => {
@@ -242,16 +292,22 @@ module CatherineShulmansQuotesConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/episodes/{program}",
-                  "parts" => [
-                    "api",
-                    "episodes",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "program" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "episodes",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -261,6 +317,11 @@ module CatherineShulmansQuotesConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "episodes",
+                    "{id}",
+                  ],
                 },
                 {
                   "args" => {
@@ -277,11 +338,19 @@ module CatherineShulmansQuotesConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/episodes/{program}/random",
-                  "parts" => [
-                    "api",
-                    "episodes",
-                    "{program}",
-                    "random",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "episodes",
+                    },
+                    {
+                      "var" => "program",
+                    },
+                    {
+                      "lit" => "random",
+                    },
                   ],
                   "select" => {
                     "$action" => "random",
@@ -293,6 +362,12 @@ module CatherineShulmansQuotesConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "episodes",
+                    "{program}",
+                    "random",
+                  ],
                 },
               ],
             },
@@ -329,11 +404,19 @@ module CatherineShulmansQuotesConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/github/{username}/analytics",
-                  "parts" => [
-                    "api",
-                    "github",
-                    "{username}",
-                    "analytics",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "github",
+                    },
+                    {
+                      "var" => "username",
+                    },
+                    {
+                      "lit" => "analytics",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -344,6 +427,12 @@ module CatherineShulmansQuotesConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "github",
+                    "{username}",
+                    "analytics",
+                  ],
                 },
               ],
             },
@@ -389,11 +478,19 @@ module CatherineShulmansQuotesConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/github/{username}/card",
-                  "parts" => [
-                    "api",
-                    "github",
-                    "{username}",
-                    "card",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "github",
+                    },
+                    {
+                      "var" => "username",
+                    },
+                    {
+                      "lit" => "card",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -405,6 +502,12 @@ module CatherineShulmansQuotesConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "github",
+                    "{username}",
+                    "card",
+                  ],
                 },
               ],
             },
@@ -441,11 +544,19 @@ module CatherineShulmansQuotesConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/github/{username}/languages",
-                  "parts" => [
-                    "api",
-                    "github",
-                    "{username}",
-                    "languages",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "github",
+                    },
+                    {
+                      "var" => "username",
+                    },
+                    {
+                      "lit" => "languages",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -456,6 +567,12 @@ module CatherineShulmansQuotesConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "github",
+                    "{username}",
+                    "languages",
+                  ],
                 },
               ],
             },
@@ -483,6 +600,10 @@ module CatherineShulmansQuotesConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "quote",
           "op" => {
             "list" => {
@@ -505,10 +626,16 @@ module CatherineShulmansQuotesConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/search/quotes",
-                  "parts" => [
-                    "api",
-                    "search",
-                    "quotes",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "search",
+                    },
+                    {
+                      "lit" => "quotes",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -519,21 +646,34 @@ module CatherineShulmansQuotesConfig
                     "req" => "`reqdata`",
                     "res" => "`body.quotes`",
                   },
+                  "parts" => [
+                    "api",
+                    "search",
+                    "quotes",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/quotes",
-                  "parts" => [
-                    "api",
-                    "quotes",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "quotes",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.quotes`",
                   },
+                  "parts" => [
+                    "api",
+                    "quotes",
+                  ],
                 },
               ],
             },
@@ -557,10 +697,16 @@ module CatherineShulmansQuotesConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/quote/{id}",
-                  "parts" => [
-                    "api",
-                    "quote",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "quote",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -571,16 +717,27 @@ module CatherineShulmansQuotesConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "quote",
+                    "{id}",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/quote/random",
-                  "parts" => [
-                    "api",
-                    "quote",
-                    "random",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "quote",
+                    },
+                    {
+                      "lit" => "random",
+                    },
                   ],
                   "select" => {
                     "$action" => "random",
@@ -589,6 +746,11 @@ module CatherineShulmansQuotesConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "quote",
+                    "random",
+                  ],
                 },
               ],
             },

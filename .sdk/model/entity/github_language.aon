@@ -24,11 +24,19 @@ main: kit: entity: github_language: {
           }
           method: "GET"
           orig: "/api/github/{username}/languages"
-          parts: [
-            "api"
-            "github"
-            "{username}"
-            "languages"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "github"
+            }
+            {
+              var: "username"
+            }
+            {
+              lit: "languages"
+            }
           ]
           select: {
             exist: [

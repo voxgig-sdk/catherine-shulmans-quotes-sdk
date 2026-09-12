@@ -1,6 +1,14 @@
 # CatherineShulmansQuotes SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -97,14 +105,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/api/",
-                "parts": [
-                  "api",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "api",
+                ],
               },
             ],
           },
@@ -140,6 +153,18 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "from": {
+            "program": "program",
+          },
+          "name": "id",
+          "parts": [
+            "program",
+            "episode_id",
+          ],
+          "sep": "/",
+        },
         "name": "episode",
         "op": {
           "list": {
@@ -161,10 +186,16 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/api/search/episodes",
-                "parts": [
-                  "api",
-                  "search",
-                  "episodes",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "search",
+                  },
+                  {
+                    "lit": "episodes",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -175,21 +206,34 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.episodes`",
                 },
+                "parts": [
+                  "api",
+                  "search",
+                  "episodes",
+                ],
               },
               {
                 "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/api/episodes",
-                "parts": [
-                  "api",
-                  "episodes",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "episodes",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.episodes`",
                 },
+                "parts": [
+                  "api",
+                  "episodes",
+                ],
               },
             ],
           },
@@ -219,11 +263,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/api/episodes/{program}/{episode_id}",
-                "parts": [
-                  "api",
-                  "episodes",
-                  "{program}",
-                  "{episode_id}",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "episodes",
+                  },
+                  {
+                    "var": "program",
+                  },
+                  {
+                    "var": "episode_id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -235,6 +287,12 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "api",
+                  "episodes",
+                  "{program}",
+                  "{episode_id}",
+                ],
               },
               {
                 "args": {
@@ -251,16 +309,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/api/episodes/{program}",
-                "parts": [
-                  "api",
-                  "episodes",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "program": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "episodes",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "id",
@@ -270,6 +334,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "api",
+                  "episodes",
+                  "{id}",
+                ],
               },
               {
                 "args": {
@@ -286,11 +355,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/api/episodes/{program}/random",
-                "parts": [
-                  "api",
-                  "episodes",
-                  "{program}",
-                  "random",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "episodes",
+                  },
+                  {
+                    "var": "program",
+                  },
+                  {
+                    "lit": "random",
+                  },
                 ],
                 "select": {
                   "$action": "random",
@@ -302,6 +379,12 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "api",
+                  "episodes",
+                  "{program}",
+                  "random",
+                ],
               },
             ],
           },
@@ -338,11 +421,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/api/github/{username}/analytics",
-                "parts": [
-                  "api",
-                  "github",
-                  "{username}",
-                  "analytics",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "github",
+                  },
+                  {
+                    "var": "username",
+                  },
+                  {
+                    "lit": "analytics",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -353,6 +444,12 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "api",
+                  "github",
+                  "{username}",
+                  "analytics",
+                ],
               },
             ],
           },
@@ -398,11 +495,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/api/github/{username}/card",
-                "parts": [
-                  "api",
-                  "github",
-                  "{username}",
-                  "card",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "github",
+                  },
+                  {
+                    "var": "username",
+                  },
+                  {
+                    "lit": "card",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -414,6 +519,12 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "api",
+                  "github",
+                  "{username}",
+                  "card",
+                ],
               },
             ],
           },
@@ -450,11 +561,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/api/github/{username}/languages",
-                "parts": [
-                  "api",
-                  "github",
-                  "{username}",
-                  "languages",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "github",
+                  },
+                  {
+                    "var": "username",
+                  },
+                  {
+                    "lit": "languages",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -465,6 +584,12 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "api",
+                  "github",
+                  "{username}",
+                  "languages",
+                ],
               },
             ],
           },
@@ -492,6 +617,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "quote",
         "op": {
           "list": {
@@ -514,10 +643,16 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/api/search/quotes",
-                "parts": [
-                  "api",
-                  "search",
-                  "quotes",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "search",
+                  },
+                  {
+                    "lit": "quotes",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -528,21 +663,34 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.quotes`",
                 },
+                "parts": [
+                  "api",
+                  "search",
+                  "quotes",
+                ],
               },
               {
                 "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/api/quotes",
-                "parts": [
-                  "api",
-                  "quotes",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "quotes",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.quotes`",
                 },
+                "parts": [
+                  "api",
+                  "quotes",
+                ],
               },
             ],
           },
@@ -566,10 +714,16 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/api/quote/{id}",
-                "parts": [
-                  "api",
-                  "quote",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "quote",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -580,16 +734,27 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "api",
+                  "quote",
+                  "{id}",
+                ],
               },
               {
                 "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/api/quote/random",
-                "parts": [
-                  "api",
-                  "quote",
-                  "random",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "quote",
+                  },
+                  {
+                    "lit": "random",
+                  },
                 ],
                 "select": {
                   "$action": "random",
@@ -598,6 +763,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "api",
+                  "quote",
+                  "random",
+                ],
               },
             ],
           },

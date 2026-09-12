@@ -34,11 +34,19 @@ main: kit: entity: github_card: {
           }
           method: "GET"
           orig: "/api/github/{username}/card"
-          parts: [
-            "api"
-            "github"
-            "{username}"
-            "card"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "github"
+            }
+            {
+              var: "username"
+            }
+            {
+              lit: "card"
+            }
           ]
           select: {
             exist: [
