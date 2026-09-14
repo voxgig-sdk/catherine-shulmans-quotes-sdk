@@ -105,7 +105,7 @@ local result, err = client:GithubCard():load({ username = "example" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/catherine-shulmans-quotes` | publish pending — [install from git tag](https://github.com/voxgig-sdk/catherine-shulmans-quotes-sdk/releases) |
+| TypeScript | `@voxgig-sdk/catherine-shulmans-quotes-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/catherine-shulmans-quotes-sdk/releases) |
 | Python | `voxgig-sdk-catherine-shulmans-quotes` | publish pending — [install from git tag](https://github.com/voxgig-sdk/catherine-shulmans-quotes-sdk/releases) |
 | PHP | `voxgig-sdk/catherine-shulmans-quotes` | publish pending — [install from git tag](https://github.com/voxgig-sdk/catherine-shulmans-quotes-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/catherine-shulmans-quotes-sdk/go` | `go get github.com/voxgig-sdk/catherine-shulmans-quotes-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:GithubCard():load({ username = "example" })
 ### TypeScript
 
 ```ts
-import { CatherineShulmansQuotesSDK } from '@voxgig-sdk/catherine-shulmans-quotes'
+import { CatherineShulmansQuotesSDK } from '@voxgig-sdk/catherine-shulmans-quotes-sdk'
 
 const client = new CatherineShulmansQuotesSDK()
 
