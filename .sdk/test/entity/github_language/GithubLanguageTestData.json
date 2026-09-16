@@ -19,5 +19,42 @@
     "github_language": {
       "github_language_ref01": {}
     }
+  },
+  "requests": {
+    "GET /api/github/{username}/languages": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getGithubLanguages",
+        "parameters": [
+          {
+            "description": "GitHub username.",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "schema": {
+              "example": "l0v3m0n3y",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "number"
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Language distribution"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

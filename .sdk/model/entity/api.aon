@@ -48,6 +48,12 @@ main: kit: entity: api: {
       name: "list"
       points: [
         {
+          contract: {
+            id: "GET /api/"
+            json: "{\"operationId\":\"getApiIndex\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"api\":{\"type\":\"string\"},\"author\":{\"type\":\"string\"},\"disclaimer\":{\"type\":\"string\"},\"endpoints\":{\"type\":\"object\"},\"mirrors\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},\"programs\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"statistics\":{\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"API index document\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/api/"
           segments: [

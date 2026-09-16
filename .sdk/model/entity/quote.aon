@@ -45,6 +45,12 @@ main: kit: entity: quote: {
               }
             ]
           }
+          contract: {
+            id: "GET /api/search/quotes"
+            json: "{\"operationId\":\"searchQuotes\",\"parameters\":[{\"description\":\"Search term.\",\"in\":\"query\",\"name\":\"q\",\"required\":true,\"schema\":{\"example\":\"насилие\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"quotes\":{\"items\":{\"properties\":{\"id\":{\"example\":1,\"type\":\"integer\"},\"source\":{\"type\":\"string\"},\"text\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"total\":{\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Matching quotes\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/api/search/quotes"
           segments: [
@@ -69,6 +75,12 @@ main: kit: entity: quote: {
           }
         }
         {
+          contract: {
+            id: "GET /api/quotes"
+            json: "{\"operationId\":\"getAllQuotes\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"quotes\":{\"items\":{\"properties\":{\"id\":{\"example\":1,\"type\":\"integer\"},\"source\":{\"type\":\"string\"},\"text\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"total\":{\"example\":276,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"All quotes\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/api/quotes"
           segments: [
@@ -102,6 +114,12 @@ main: kit: entity: quote: {
               }
             ]
           }
+          contract: {
+            id: "GET /api/quote/{id}"
+            json: "{\"operationId\":\"getQuoteById\",\"parameters\":[{\"description\":\"Quote identifier.\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"id\":{\"example\":1,\"type\":\"integer\"},\"source\":{\"type\":\"string\"},\"text\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"The requested quote\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"example\":\"Not Found\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Resource not found\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/api/quote/{id}"
           segments: [
@@ -126,6 +144,12 @@ main: kit: entity: quote: {
           }
         }
         {
+          contract: {
+            id: "GET /api/quote/random"
+            json: "{\"operationId\":\"getRandomQuote\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"id\":{\"example\":1,\"type\":\"integer\"},\"source\":{\"type\":\"string\"},\"text\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"A random quote\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/api/quote/random"
           segments: [

@@ -6,7 +6,7 @@
         "id": "EPISODE00",
         "program": "s3e",
         "title": "s3f",
-        "total": "s40",
+        "total": 64,
         "url": "s41",
         "episode_id": "EPISODE01"
       },
@@ -15,7 +15,7 @@
         "id": "EPISODE01",
         "program": "s7a",
         "title": "s7b",
-        "total": "s7c",
+        "total": 124,
         "url": "s7d",
         "episode_id": "EPISODE01"
       },
@@ -24,7 +24,7 @@
         "id": "EPISODE02",
         "program": "sb6",
         "title": "sb7",
-        "total": "sb8",
+        "total": 184,
         "url": "sb9",
         "episode_id": "EPISODE01"
       }
@@ -36,8 +36,333 @@
         "episodes": [],
         "program": "sf2",
         "title": "sf3",
-        "total": "sf4",
+        "total": 244,
         "url": "sf5"
+      }
+    }
+  },
+  "requests": {
+    "GET /api/search/episodes": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "searchEpisodes",
+        "parameters": [
+          {
+            "description": "Search term.",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "episodes": {
+                      "items": {
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "program": {
+                            "type": "string"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "url": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "total": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Matching episodes"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /api/episodes": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getAllEpisodes",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "episodes": {
+                      "items": {
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "program": {
+                            "type": "string"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "url": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "total": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "All episodes"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /api/episodes/{program}/{episode_id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getEpisodeById",
+        "parameters": [
+          {
+            "description": "Program slug: slow-reading, knowledge-is-power, status or zakladka.",
+            "in": "path",
+            "name": "program",
+            "required": true,
+            "schema": {
+              "enum": [
+                "slow-reading",
+                "knowledge-is-power",
+                "status",
+                "zakladka"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Episode identifier.",
+            "in": "path",
+            "name": "episode_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "program": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The requested episode"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "detail": {
+                      "example": "Not Found",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Resource not found"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /api/episodes/{program}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getEpisodesByProgram",
+        "parameters": [
+          {
+            "description": "Program slug: slow-reading, knowledge-is-power, status or zakladka.",
+            "in": "path",
+            "name": "program",
+            "required": true,
+            "schema": {
+              "enum": [
+                "slow-reading",
+                "knowledge-is-power",
+                "status",
+                "zakladka"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "episodes": {
+                      "items": {
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "program": {
+                            "type": "string"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "url": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "total": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Episodes of the program"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "detail": {
+                      "example": "Not Found",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Resource not found"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /api/episodes/{program}/random": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getRandomEpisode",
+        "parameters": [
+          {
+            "description": "Program slug: slow-reading, knowledge-is-power, status or zakladka.",
+            "in": "path",
+            "name": "program",
+            "required": true,
+            "schema": {
+              "enum": [
+                "slow-reading",
+                "knowledge-is-power",
+                "status",
+                "zakladka"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "program": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A random episode"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "detail": {
+                      "example": "Not Found",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Resource not found"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

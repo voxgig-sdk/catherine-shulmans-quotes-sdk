@@ -32,6 +32,12 @@ main: kit: entity: github_card: {
               }
             ]
           }
+          contract: {
+            id: "GET /api/github/{username}/card"
+            json: "{\"operationId\":\"getGithubCard\",\"parameters\":[{\"description\":\"GitHub username.\",\"in\":\"path\",\"name\":\"username\",\"required\":true,\"schema\":{\"example\":\"l0v3m0n3y\",\"type\":\"string\"}},{\"description\":\"Card style.\",\"in\":\"query\",\"name\":\"style\",\"required\":false,\"schema\":{\"default\":\"shulman\",\"enum\":[\"shulman\",\"apple\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"image/svg+xml\":{\"schema\":{\"type\":\"string\"}}},\"description\":\"SVG card\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/api/github/{username}/card"
           segments: [

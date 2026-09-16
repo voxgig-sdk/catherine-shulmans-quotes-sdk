@@ -1,12 +1,18 @@
 # CatherineShulmansQuotes SDK feature factory
 
 from catherineshulmansquotes_sdk.feature.base_feature import CatherineShulmansQuotesBaseFeature
+from catherineshulmansquotes_sdk.feature.ratelimit_feature import CatherineShulmansQuotesRatelimitFeature
+from catherineshulmansquotes_sdk.feature.retry_feature import CatherineShulmansQuotesRetryFeature
 from catherineshulmansquotes_sdk.feature.test_feature import CatherineShulmansQuotesTestFeature
+from catherineshulmansquotes_sdk.feature.timeout_feature import CatherineShulmansQuotesTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: CatherineShulmansQuotesBaseFeature(),
+    "ratelimit": lambda: CatherineShulmansQuotesRatelimitFeature(),
+    "retry": lambda: CatherineShulmansQuotesRetryFeature(),
     "test": lambda: CatherineShulmansQuotesTestFeature(),
+    "timeout": lambda: CatherineShulmansQuotesTimeoutFeature(),
 }
 
 

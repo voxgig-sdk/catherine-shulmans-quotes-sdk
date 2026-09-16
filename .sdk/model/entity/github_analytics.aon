@@ -22,6 +22,12 @@ main: kit: entity: github_analytics: {
               }
             ]
           }
+          contract: {
+            id: "GET /api/github/{username}/analytics"
+            json: "{\"operationId\":\"getGithubAnalytics\",\"parameters\":[{\"description\":\"GitHub username.\",\"in\":\"path\",\"name\":\"username\",\"required\":true,\"schema\":{\"example\":\"l0v3m0n3y\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"type\":\"object\"}}},\"description\":\"Profile analytics\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/api/github/{username}/analytics"
           segments: [

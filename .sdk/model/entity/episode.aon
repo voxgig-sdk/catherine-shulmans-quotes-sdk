@@ -67,6 +67,12 @@ main: kit: entity: episode: {
               }
             ]
           }
+          contract: {
+            id: "GET /api/search/episodes"
+            json: "{\"operationId\":\"searchEpisodes\",\"parameters\":[{\"description\":\"Search term.\",\"in\":\"query\",\"name\":\"q\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"episodes\":{\"items\":{\"properties\":{\"id\":{\"type\":\"string\"},\"program\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"total\":{\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Matching episodes\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/api/search/episodes"
           segments: [
@@ -91,6 +97,12 @@ main: kit: entity: episode: {
           }
         }
         {
+          contract: {
+            id: "GET /api/episodes"
+            json: "{\"operationId\":\"getAllEpisodes\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"episodes\":{\"items\":{\"properties\":{\"id\":{\"type\":\"string\"},\"program\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"total\":{\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"All episodes\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/api/episodes"
           segments: [
@@ -129,6 +141,12 @@ main: kit: entity: episode: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /api/episodes/{program}/{episode_id}"
+            json: "{\"operationId\":\"getEpisodeById\",\"parameters\":[{\"description\":\"Program slug: slow-reading, knowledge-is-power, status or zakladka.\",\"in\":\"path\",\"name\":\"program\",\"required\":true,\"schema\":{\"enum\":[\"slow-reading\",\"knowledge-is-power\",\"status\",\"zakladka\"],\"type\":\"string\"}},{\"description\":\"Episode identifier.\",\"in\":\"path\",\"name\":\"episode_id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"id\":{\"type\":\"string\"},\"program\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"The requested episode\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"example\":\"Not Found\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Resource not found\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/api/episodes/{program}/{episode_id}"
@@ -169,6 +187,12 @@ main: kit: entity: episode: {
               }
             ]
           }
+          contract: {
+            id: "GET /api/episodes/{program}"
+            json: "{\"operationId\":\"getEpisodesByProgram\",\"parameters\":[{\"description\":\"Program slug: slow-reading, knowledge-is-power, status or zakladka.\",\"in\":\"path\",\"name\":\"program\",\"required\":true,\"schema\":{\"enum\":[\"slow-reading\",\"knowledge-is-power\",\"status\",\"zakladka\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"episodes\":{\"items\":{\"properties\":{\"id\":{\"type\":\"string\"},\"program\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"total\":{\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Episodes of the program\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"example\":\"Not Found\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Resource not found\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/api/episodes/{program}"
           rename: {
@@ -208,6 +232,12 @@ main: kit: entity: episode: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /api/episodes/{program}/random"
+            json: "{\"operationId\":\"getRandomEpisode\",\"parameters\":[{\"description\":\"Program slug: slow-reading, knowledge-is-power, status or zakladka.\",\"in\":\"path\",\"name\":\"program\",\"required\":true,\"schema\":{\"enum\":[\"slow-reading\",\"knowledge-is-power\",\"status\",\"zakladka\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"id\":{\"type\":\"string\"},\"program\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"A random episode\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"example\":\"Not Found\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Resource not found\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/api/episodes/{program}/random"

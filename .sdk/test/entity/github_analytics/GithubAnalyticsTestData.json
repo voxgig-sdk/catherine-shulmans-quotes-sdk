@@ -19,5 +19,39 @@
     "github_analytics": {
       "github_analytics_ref01": {}
     }
+  },
+  "requests": {
+    "GET /api/github/{username}/analytics": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getGithubAnalytics",
+        "parameters": [
+          {
+            "description": "GitHub username.",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "schema": {
+              "example": "l0v3m0n3y",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Profile analytics"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

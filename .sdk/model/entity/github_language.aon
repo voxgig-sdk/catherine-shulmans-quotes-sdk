@@ -22,6 +22,12 @@ main: kit: entity: github_language: {
               }
             ]
           }
+          contract: {
+            id: "GET /api/github/{username}/languages"
+            json: "{\"operationId\":\"getGithubLanguages\",\"parameters\":[{\"description\":\"GitHub username.\",\"in\":\"path\",\"name\":\"username\",\"required\":true,\"schema\":{\"example\":\"l0v3m0n3y\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"additionalProperties\":{\"type\":\"number\"},\"type\":\"object\"}}},\"description\":\"Language distribution\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/api/github/{username}/languages"
           segments: [

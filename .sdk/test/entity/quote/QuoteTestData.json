@@ -25,5 +25,200 @@
         "text": "s7a"
       }
     }
+  },
+  "requests": {
+    "GET /api/search/quotes": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "searchQuotes",
+        "parameters": [
+          {
+            "description": "Search term.",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "schema": {
+              "example": "насилие",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "quotes": {
+                      "items": {
+                        "properties": {
+                          "id": {
+                            "example": 1,
+                            "type": "integer"
+                          },
+                          "source": {
+                            "type": "string"
+                          },
+                          "text": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "total": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Matching quotes"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /api/quotes": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getAllQuotes",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "quotes": {
+                      "items": {
+                        "properties": {
+                          "id": {
+                            "example": 1,
+                            "type": "integer"
+                          },
+                          "source": {
+                            "type": "string"
+                          },
+                          "text": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "total": {
+                      "example": 276,
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "All quotes"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /api/quote/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getQuoteById",
+        "parameters": [
+          {
+            "description": "Quote identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "id": {
+                      "example": 1,
+                      "type": "integer"
+                    },
+                    "source": {
+                      "type": "string"
+                    },
+                    "text": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The requested quote"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "detail": {
+                      "example": "Not Found",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Resource not found"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /api/quote/random": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getRandomQuote",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "id": {
+                      "example": 1,
+                      "type": "integer"
+                    },
+                    "source": {
+                      "type": "string"
+                    },
+                    "text": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A random quote"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }
