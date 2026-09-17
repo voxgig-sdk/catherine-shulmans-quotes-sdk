@@ -1,8 +1,8 @@
 # Flows
 
-@"BasicApiFlow.aon"
-@"BasicEpisodeFlow.aon"
-@"BasicGithubAnalyticsFlow.aon"
-@"BasicGithubCardFlow.aon"
-@"BasicGithubLanguageFlow.aon"
-@"BasicQuoteFlow.aon"
+@"./BasicApiFlow.aon"
+@"./BasicEpisodeFlow.aon"
+@"./BasicGithubAnalyticsFlow.aon"
+@"./BasicGithubCardFlow.aon"
+@"./BasicGithubLanguageFlow.aon"
+@"./BasicQuoteFlow.aon"

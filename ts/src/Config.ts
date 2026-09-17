@@ -127,24 +127,24 @@ class Config {
 
     entity: {
       
-      api: {
-      },
-
-      episode: {
-      },
-
-      github_analytics: {
-      },
-
-      github_card: {
-      },
-
-      github_language: {
-      },
-
-      quote: {
-      },
-
+        api: {
+        },
+  
+        episode: {
+        },
+  
+        github_analytics: {
+        },
+  
+        github_card: {
+        },
+  
+        github_language: {
+        },
+  
+        quote: {
+        },
+  
     }
   }
 

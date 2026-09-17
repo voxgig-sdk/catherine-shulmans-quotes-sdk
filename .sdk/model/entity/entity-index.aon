@@ -1,8 +1,8 @@
 # Entity Models
 
-@"api.aon"
-@"episode.aon"
-@"github_analytics.aon"
-@"github_card.aon"
-@"github_language.aon"
-@"quote.aon"
+@"./api.aon"
+@"./episode.aon"
+@"./github_analytics.aon"
+@"./github_card.aon"
+@"./github_language.aon"
+@"./quote.aon"

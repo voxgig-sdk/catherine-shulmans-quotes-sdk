@@ -105,12 +105,12 @@ local result, err = client:GithubCard():load({ username = "example" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/catherine-shulmans-quotes-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/catherine-shulmans-quotes-sdk/releases) |
-| Python | `voxgig-sdk-catherine-shulmans-quotes` | publish pending — [install from git tag](https://github.com/voxgig-sdk/catherine-shulmans-quotes-sdk/releases) |
-| PHP | `voxgig-sdk/catherine-shulmans-quotes` | publish pending — [install from git tag](https://github.com/voxgig-sdk/catherine-shulmans-quotes-sdk/releases) |
+| TypeScript | `@voxgig-sdk/catherine-shulmans-quotes-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/catherine-shulmans-quotes-sdk/tags) |
+| Python | `voxgig-sdk-catherine-shulmans-quotes` | publish pending — [install from git tag](https://github.com/voxgig-sdk/catherine-shulmans-quotes-sdk/tags) |
+| PHP | `voxgig-sdk/catherine-shulmans-quotes` | publish pending — [install from git tag](https://github.com/voxgig-sdk/catherine-shulmans-quotes-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/catherine-shulmans-quotes-sdk/go` | `go get github.com/voxgig-sdk/catherine-shulmans-quotes-sdk/go@latest` |
-| Ruby | `voxgig-sdk-catherine-shulmans-quotes` | publish pending — [install from git tag](https://github.com/voxgig-sdk/catherine-shulmans-quotes-sdk/releases) |
-| Lua | `voxgig-sdk-catherine-shulmans-quotes` | publish pending — [install from git tag](https://github.com/voxgig-sdk/catherine-shulmans-quotes-sdk/releases) |
+| Ruby | `voxgig-sdk-catherine-shulmans-quotes` | publish pending — [install from git tag](https://github.com/voxgig-sdk/catherine-shulmans-quotes-sdk/tags) |
+| Lua | `voxgig-sdk-catherine-shulmans-quotes` | publish pending — [install from git tag](https://github.com/voxgig-sdk/catherine-shulmans-quotes-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/catherine-shulmans-quotes-sdk/go-cli` | `go install github.com/voxgig-sdk/catherine-shulmans-quotes-sdk/go-cli/cmd/catherine-shulmans-quotes@latest` |
 | Go MCP server | `github.com/voxgig-sdk/catherine-shulmans-quotes-sdk/go-mcp` | `go get github.com/voxgig-sdk/catherine-shulmans-quotes-sdk/go-mcp@latest` |
 
